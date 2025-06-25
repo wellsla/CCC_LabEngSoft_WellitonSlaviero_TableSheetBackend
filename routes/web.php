@@ -1,7 +1,12 @@
-<?php
-
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+| Aqui ficam suas rotas web. Se não for usar nenhuma, deixe só o fallback
+*/
+
+Route::fallback(function () {
+    abort(404);
 });
