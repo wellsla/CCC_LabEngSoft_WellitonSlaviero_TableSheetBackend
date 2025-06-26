@@ -16,6 +16,7 @@ class CharacterSheet extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'user_id',
         'game_id',
         'race_id',
         'class_id',

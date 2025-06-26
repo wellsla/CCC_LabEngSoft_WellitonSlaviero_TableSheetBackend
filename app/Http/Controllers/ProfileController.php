@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProfileRequest;
+use App\Http\Requests\UpdateProfileRequest;
+use App\Http\Requests\ChangePasswordRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -46,7 +49,7 @@ class ProfileController extends Controller
     /**
      * Update user profile
      *
-     * Update the authenticated user's profile information.
+     * Update the authenticated user's profile information (excluding password).
      *
      * @authenticated
      * @header Authorization Bearer {YOUR_AUTH_KEY}
@@ -56,7 +59,6 @@ class ProfileController extends Controller
      * @bodyParam email string The user's email address. Example: john.updated@example.com
      * @bodyParam birth_date string The user's birth date (YYYY-MM-DD). Example: 1990-01-01
      * @bodyParam avatar_url string The user's avatar URL. Example: https://example.com/new-avatar.jpg
-     * @bodyParam password string The new password (min 8 characters). Example: newpassword123
      *
      * @response 200 {
      *   "message": "Profile updated successfully",
@@ -69,7 +71,7 @@ class ProfileController extends Controller
      *     "avatar_url": "https://example.com/new-avatar.jpg",
      *     "is_admin": false,
      *     "is_suspended": false,
-     *     "email_verified_at": "2024-01-01T12:00:00.000000Z",
+     *     "email_verified_at": null,
      *     "created_at": "2024-01-01T12:00:00.000000Z",
      *     "updated_at": "2024-01-01T13:00:00.000000Z"
      *   }
@@ -81,30 +83,63 @@ class ProfileController extends Controller
      *   }
      * }
      */
-    public function update(Request $request)
+    public function update(UpdateProfileRequest $request)
     {
         $user = $request->user();
-
-        $request->validate([
-            'username' => 'string|unique:users,username,' . $user->id,
-            'name' => 'string',
-            'email' => 'string|email|unique:users,email,' . $user->id,
-            'birth_date' => 'date',
-            'avatar_url' => 'string|nullable',
-            'password' => 'string|min:8|nullable',
-        ]);
+        $originalEmail = $user->email;
 
         $data = $request->only(['username', 'name', 'email', 'birth_date', 'avatar_url']);
 
-        if ($request->filled('password')) {
-            $data['password'] = Hash::make($request->password);
+        // If email is being changed, reset email verification
+        if (isset($data['email']) && $data['email'] !== $originalEmail) {
+            $data['email_verified_at'] = null;
         }
 
         $user->update($data);
 
+        // Send email verification if email was changed
+        if (isset($data['email']) && $data['email'] !== $originalEmail) {
+            $user->sendEmailVerificationNotification();
+        }
+
         return response()->json([
             'message' => 'Profile updated successfully',
             'data' => $user->fresh()
+        ]);
+    }
+
+    /**
+     * Change user password
+     *
+     * Change the authenticated user's password.
+     *
+     * @authenticated
+     * @header Authorization Bearer {YOUR_AUTH_KEY}
+     *
+     * @bodyParam current_password string required The current password. Example: currentpassword123
+     * @bodyParam password string required The new password (min 8 characters). Example: newpassword123
+     * @bodyParam password_confirmation string required The new password confirmation. Example: newpassword123
+     *
+     * @response 200 {
+     *   "message": "Password changed successfully"
+     * }
+     * @response 422 {
+     *   "message": "The given data was invalid.",
+     *   "errors": {
+     *     "current_password": ["A senha atual está incorreta."]
+     *   }
+     * }
+     */
+    public function changePassword(ChangePasswordRequest $request)
+    {
+        $user = $request->user();
+
+        $user->update([
+            'password' => Hash::make($request->password)
+        ]);
+
+        return response()->json([
+            'message' => 'Senha alterada com sucesso.'
         ]);
     }
 }

@@ -12,6 +12,7 @@ use App\Http\Controllers\HealthController;
 use App\Http\Controllers\RaceController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\DocumentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +36,24 @@ Route::get('/games/{game}', [GameController::class, 'show']);
 Route::get('/races', [RaceController::class, 'index']);
 Route::get('/races/{race}', [RaceController::class, 'show']);
 Route::get('/classes', [ClassController::class, 'index']);
-Route::get('/classes/{class}', [ClassController::class, 'show']);
+Route::get('/classes/{gameClass}', [ClassController::class, 'show']);
+
+// NOVAS ROTAS PARA ARQUIVOS (públicas para resolver CORS)
+// Documentos PDF
+Route::get('/documents/{filename}', [DocumentController::class, 'serveDocument']);
+Route::get('/books/{bookId}/document', [DocumentController::class, 'serveBookDocument']);
+
+// Imagens - Avatars
+Route::get('/avatars/{filename}', [DocumentController::class, 'serveAvatar']);
+Route::get('/users/{userId}/avatar', [DocumentController::class, 'serveUserAvatar']);
+
+// Imagens - Portraits
+Route::get('/portraits/{filename}', [DocumentController::class, 'servePortrait']);
+Route::get('/sheets/{sheetId}/portrait', [DocumentController::class, 'serveSheetPortrait']);
+
+// Imagens - Cover Images
+Route::get('/covers/{filename}', [DocumentController::class, 'serveCoverImage']);
+Route::get('/games/{gameId}/cover', [DocumentController::class, 'serveGameCover']);
 
 // Authenticated
 Route::middleware('auth:sanctum')->group(function () {
@@ -46,6 +64,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // Profile
     Route::get('/profile', [ProfileController::class, 'show']);
     Route::put('/profile', [ProfileController::class, 'update']);
+    Route::put('/profile/password', [ProfileController::class, 'changePassword']);
 
     // Sheets
     Route::get('/sheets', [CharacterSheetController::class, 'index']);
@@ -78,8 +97,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/races/{race}', [RaceController::class, 'destroy']);
 
         Route::post('/classes', [ClassController::class, 'store']);
-        Route::put('/classes/{class}', [ClassController::class, 'update']);
-        Route::delete('/classes/{class}', [ClassController::class, 'destroy']);
+        Route::put('/classes/{gameClass}', [ClassController::class, 'update']);
+        Route::delete('/classes/{gameClass}', [ClassController::class, 'destroy']);
 
         Route::post('/books', [BookController::class, 'store']);
         Route::put('/books/{book}', [BookController::class, 'update']);

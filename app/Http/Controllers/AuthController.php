@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Http\Requests\AuthRequest;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,15 +41,8 @@ class AuthController extends Controller
      *   }
      * }
      */
-    public function register(Request $request)
+    public function register(AuthRequest $request)
     {
-        $request->validate([
-            'username' => 'required|string|unique:users',
-            'name' => 'required|string',
-            'email' => 'required|string|email|unique:users',
-            'password' => 'required|string|min:8',
-            'birth_date' => 'required|date',
-        ]);
 
         $user = User::create([
             'username' => $request->username,
@@ -91,12 +85,8 @@ class AuthController extends Controller
      *   "message": "Please verify your email before logging in."
      * }
      */
-    public function login(Request $request)
+    public function login(AuthRequest $request)
     {
-        $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-        ]);
 
         if (!Auth::attempt($request->only('email', 'password'))) {
             throw ValidationException::withMessages([
@@ -263,11 +253,8 @@ class AuthController extends Controller
      *   }
      * }
      */
-    public function forgotPassword(Request $request)
+    public function forgotPassword(AuthRequest $request)
     {
-        $request->validate([
-            'email' => 'required|email|exists:users,email',
-        ]);
 
         $status = Password::sendResetLink(
             $request->only('email')

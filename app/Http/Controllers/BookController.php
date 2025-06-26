@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Http\Requests\BookRequest;
 use Illuminate\Http\Request;
 
 /**
@@ -58,14 +59,8 @@ class BookController extends Controller
         );
     }
 
-    public function store(Request $request)
+    public function store(BookRequest $request)
     {
-        $request->validate([
-            'game_id' => 'required|exists:games,id',
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'document_url' => 'required|string|url',
-        ]);
 
         $book = Book::create([
             'game_id' => $request->game_id,
@@ -78,20 +73,13 @@ class BookController extends Controller
         return $this->createdResponse($book->load('game'), 'Livro criado com sucesso');
     }
 
-    public function update(Request $request, $id)
+    public function update(BookRequest $request, $id)
     {
         $book = Book::find($id);
 
         if (!$book) {
             return $this->notFoundResponse('Livro não encontrado. O ID informado não existe ou foi removido.');
         }
-
-        $request->validate([
-            'game_id' => 'exists:games,id',
-            'name' => 'string|max:255',
-            'description' => 'nullable|string',
-            'document_url' => 'string|url',
-        ]);
 
         $book->update($request->only([
             'game_id', 'name', 'description', 'document_url'

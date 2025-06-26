@@ -7,7 +7,6 @@ use App\Models\Game;
 use App\Models\Race;
 use App\Models\GameClass;
 use App\Models\Book;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -18,10 +17,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create default admin user
+        // Criar usuário administrador padrão
         $admin = User::create([
             'username' => 'admin',
-            'name' => 'Administrator',
+            'name' => 'Administrador',
             'email' => 'admin@tablesheet.com',
             'password' => Hash::make(env('ADMIN_DEFAULT_PASSWORD', 'TableSheet@2024!')),
             'birth_date' => '1990-01-01',
@@ -29,113 +28,137 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now(),
         ]);
 
-        // Create sample games
+        // Criar jogo Dungeons & Dragons
         $dnd5e = Game::create([
-            'name' => 'Dungeons & Dragons 5th Edition',
-            'description' => 'The world\'s greatest roleplaying game. Create heroic characters and embark on epic adventures in a fantasy world of magic and monsters.',
+            'name' => 'Dungeons & Dragons',
+            'description' => 'O maior jogo de RPG do mundo. Crie personagens heroicos e embarque em aventuras épicas em um mundo de fantasia repleto de magia e monstros.',
             'version' => '5.0',
             'is_active' => true,
             'created_by' => $admin->id,
         ]);
 
-        $pathfinder = Game::create([
-            'name' => 'Pathfinder 2nd Edition',
-            'description' => 'A fantasy tabletop roleplaying game where players take on the role of brave adventurers fighting to survive in a world beset by magic and evil.',
-            'version' => '2.0',
-            'is_active' => true,
-            'created_by' => $admin->id,
-        ]);
-
-        // Create sample races for D&D 5e
+        // Criar raças para D&D
         Race::create([
             'game_id' => $dnd5e->id,
-            'name' => 'Human',
-            'description' => 'Versatile and ambitious, humans are the most common race in most fantasy worlds.',
+            'name' => 'Humano',
+            'description' => 'Versáteis e ambiciosos, os humanos são a raça mais comum na maioria dos mundos de fantasia.',
         ]);
 
         Race::create([
             'game_id' => $dnd5e->id,
-            'name' => 'Elf',
-            'description' => 'Magical people of otherworldly grace, living in places of ethereal beauty.',
+            'name' => 'Elfo',
+            'description' => 'Povo mágico de graça sobrenatural, vivendo em lugares de beleza etérea.',
         ]);
 
         Race::create([
             'game_id' => $dnd5e->id,
-            'name' => 'Dwarf',
-            'description' => 'Bold and hardy, dwarves are known as skilled warriors, miners, and workers of stone and metal.',
+            'name' => 'Anão',
+            'description' => 'Corajosos e resistentes, os anões são conhecidos como guerreiros habilidosos, mineradores e trabalhadores de pedra e metal.',
         ]);
 
         Race::create([
             'game_id' => $dnd5e->id,
             'name' => 'Halfling',
-            'description' => 'Small folk who love peace, good food, hearth and home.',
-        ]);
-
-        // Create sample races for Pathfinder
-        Race::create([
-            'game_id' => $pathfinder->id,
-            'name' => 'Human',
-            'description' => 'Ambitious, sometimes heroic, and always confident, humans have an ability to work together toward common goals.',
+            'description' => 'Pequeno povo que ama a paz, boa comida, lar e conforto.',
         ]);
 
         Race::create([
-            'game_id' => $pathfinder->id,
-            'name' => 'Elf',
-            'description' => 'As an ancient people, elves have seen great change and have the perspective that can come only from watching the arc of history.',
+            'game_id' => $dnd5e->id,
+            'name' => 'Meio-Elfo',
+            'description' => 'Caminhando entre dois mundos, mas não pertencendo verdadeiramente a nenhum deles.',
         ]);
 
-        // Create sample classes for D&D 5e
+        Race::create([
+            'game_id' => $dnd5e->id,
+            'name' => 'Meio-Orc',
+            'description' => 'Alguns meio-orcs vivem entre humanos, lutando contra seus impulsos violentos.',
+        ]);
+
+        Race::create([
+            'game_id' => $dnd5e->id,
+            'name' => 'Tiefling',
+            'description' => 'Descendentes de humanos com herança infernal, carregando o legado de seus ancestrais.',
+        ]);
+
+        // Criar classes para D&D
         GameClass::create([
             'game_id' => $dnd5e->id,
-            'name' => 'Fighter',
-            'description' => 'A master of martial combat, skilled with a variety of weapons and armor.',
+            'name' => 'Guerreiro',
+            'description' => 'Um mestre do combate marcial, habilidoso com uma variedade de armas e armaduras.',
         ]);
 
         GameClass::create([
             'game_id' => $dnd5e->id,
-            'name' => 'Wizard',
-            'description' => 'A scholarly magic-user capable of manipulating the structures of reality.',
+            'name' => 'Mago',
+            'description' => 'Um usuário de magia erudito capaz de manipular as estruturas da realidade.',
         ]);
 
         GameClass::create([
             'game_id' => $dnd5e->id,
-            'name' => 'Rogue',
-            'description' => 'A scoundrel who uses stealth and trickery to achieve their goals.',
+            'name' => 'Ladino',
+            'description' => 'Um patife que usa furtividade e truques para alcançar seus objetivos.',
         ]);
 
         GameClass::create([
             'game_id' => $dnd5e->id,
-            'name' => 'Cleric',
-            'description' => 'A priestly champion who wields divine magic in service of a higher power.',
-        ]);
-
-        // Create sample classes for Pathfinder
-        GameClass::create([
-            'game_id' => $pathfinder->id,
-            'name' => 'Fighter',
-            'description' => 'Fighting for honor, greed, loyalty, or simply the thrill of battle, you are an undisputed master of weaponry and combat techniques.',
+            'name' => 'Clérico',
+            'description' => 'Um campeão sacerdotal que empunha magia divina a serviço de um poder superior.',
         ]);
 
         GameClass::create([
-            'game_id' => $pathfinder->id,
-            'name' => 'Wizard',
-            'description' => 'You seek to uncover the secrets of magic through careful study and rigorous academic pursuit.',
+            'game_id' => $dnd5e->id,
+            'name' => 'Ranger',
+            'description' => 'Um guerreiro das terras selvagens, especialista em rastreamento e sobrevivência.',
         ]);
 
-        // Create sample books
+        GameClass::create([
+            'game_id' => $dnd5e->id,
+            'name' => 'Paladino',
+            'description' => 'Um guerreiro sagrado vinculado a um juramento sagrado, combatendo o mal.',
+        ]);
+
+        GameClass::create([
+            'game_id' => $dnd5e->id,
+            'name' => 'Bárbaro',
+            'description' => 'Um feroz guerreiro de origem primitiva que pode entrar em fúria de batalha.',
+        ]);
+
+        GameClass::create([
+            'game_id' => $dnd5e->id,
+            'name' => 'Bardo',
+            'description' => 'Um mestre das canções, discursos e da magia que eles contêm.',
+        ]);
+
+        GameClass::create([
+            'game_id' => $dnd5e->id,
+            'name' => 'Druida',
+            'description' => 'Um sacerdote da natureza, empunhando magia elemental e se transformando em animais.',
+        ]);
+
+        GameClass::create([
+            'game_id' => $dnd5e->id,
+            'name' => 'Monge',
+            'description' => 'Um mestre das artes marciais, aproveitando o poder do corpo em busca da perfeição física e espiritual.',
+        ]);
+
+        GameClass::create([
+            'game_id' => $dnd5e->id,
+            'name' => 'Feiticeiro',
+            'description' => 'Um conjurador que extrai sua magia inata de uma fonte dracônica ou outra origem exótica.',
+        ]);
+
+        GameClass::create([
+            'game_id' => $dnd5e->id,
+            'name' => 'Bruxo',
+            'description' => 'Um usuário de magia que fez um pacto com uma entidade extraplanar.',
+        ]);
+
+        // Criar livros para D&D
         Book::create([
             'game_id' => $dnd5e->id,
-            'name' => 'Player\'s Handbook',
-            'description' => 'The essential reference for every Dungeons & Dragons roleplayer.',
-            'document_url' => 'https://example.com/dnd5e-phb.pdf',
-            'created_by' => $admin->id,
-        ]);
-
-        Book::create([
-            'game_id' => $pathfinder->id,
-            'name' => 'Core Rulebook',
-            'description' => 'The essential rules for the Pathfinder Roleplaying Game.',
-            'document_url' => 'https://example.com/pathfinder-core.pdf',
+            'name' => 'Livro do Jogador',
+            'description' => 'A referência essencial para todo jogador de Dungeons & Dragons.',
+            'document_url' => 'http://host.docker.internal:8000/api/documents/DNDTESTE.pdf',
             'created_by' => $admin->id,
         ]);
     }

@@ -149,17 +149,17 @@
                                                     <li class="tocify-item level-2" data-unique="classes-GETapi-classes">
                                 <a href="#classes-GETapi-classes">GET api/classes</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="classes-GETapi-classes--class-">
-                                <a href="#classes-GETapi-classes--class-">GET api/classes/{class}</a>
+                                                                                <li class="tocify-item level-2" data-unique="classes-GETapi-classes--gameClass_id-">
+                                <a href="#classes-GETapi-classes--gameClass_id-">GET api/classes/{gameClass_id}</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="classes-POSTapi-classes">
                                 <a href="#classes-POSTapi-classes">POST api/classes</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="classes-PUTapi-classes--class-">
-                                <a href="#classes-PUTapi-classes--class-">PUT api/classes/{class}</a>
+                                                                                <li class="tocify-item level-2" data-unique="classes-PUTapi-classes--gameClass_id-">
+                                <a href="#classes-PUTapi-classes--gameClass_id-">PUT api/classes/{gameClass_id}</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="classes-DELETEapi-classes--class-">
-                                <a href="#classes-DELETEapi-classes--class-">DELETE api/classes/{class}</a>
+                                                                                <li class="tocify-item level-2" data-unique="classes-DELETEapi-classes--gameClass_id-">
+                                <a href="#classes-DELETEapi-classes--gameClass_id-">DELETE api/classes/{gameClass_id}</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -168,7 +168,31 @@
                     <a href="#endpoints">Endpoints</a>
                 </li>
                                     <ul id="tocify-subheader-endpoints" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="endpoints-POSTapi-upload-avatar">
+                                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-documents--filename-">
+                                <a href="#endpoints-GETapi-documents--filename-">Serve a document file by filename</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-books--bookId--document">
+                                <a href="#endpoints-GETapi-books--bookId--document">Serve a book's document</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-avatars--filename-">
+                                <a href="#endpoints-GETapi-avatars--filename-">Serve an avatar file by filename</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-users--userId--avatar">
+                                <a href="#endpoints-GETapi-users--userId--avatar">Serve a user's avatar</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-portraits--filename-">
+                                <a href="#endpoints-GETapi-portraits--filename-">Serve a portrait file by filename</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-sheets--sheetId--portrait">
+                                <a href="#endpoints-GETapi-sheets--sheetId--portrait">Serve a character sheet's portrait</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-covers--filename-">
+                                <a href="#endpoints-GETapi-covers--filename-">Serve a cover image file by filename</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-games--gameId--cover">
+                                <a href="#endpoints-GETapi-games--gameId--cover">Serve a game's cover image</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-upload-avatar">
                                 <a href="#endpoints-POSTapi-upload-avatar">Upload avatar for authenticated user</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-POSTapi-upload-portrait">
@@ -239,6 +263,9 @@
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="profile-PUTapi-profile">
                                 <a href="#profile-PUTapi-profile">Update user profile</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="profile-PUTapi-profile-password">
+                                <a href="#profile-PUTapi-profile-password">Change user password</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -1645,8 +1672,7 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
-access-control-allow-origin: http://host.docker.internal:8000
-access-control-allow-credentials: true
+vary: Origin
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
@@ -1738,14 +1764,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://host.docker.internal/api/books/architecto" \
+    --get "http://host.docker.internal/api/books/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://host.docker.internal/api/books/architecto"
+    "http://host.docker.internal/api/books/1"
 );
 
 const headers = {
@@ -1770,8 +1796,7 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
-access-control-allow-origin: http://host.docker.internal:8000
-access-control-allow-credentials: true
+vary: Origin
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
@@ -1851,14 +1876,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
                         <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>book</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>integer</small>&nbsp;
  &nbsp;
-                <input type="text" style="display: none"
-                              name="book"                data-endpoint="GETapi-books--book-"
-               value="architecto"
+                <input type="number" style="display: none"
+               step="any"               name="book"                data-endpoint="GETapi-books--book-"
+               value="1"
                data-component="url">
     <br>
-<p>The book. Example: <code>architecto</code></p>
+<p>The book. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -1879,7 +1904,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"game_id\": \"architecto\",
+    \"game_id\": 16,
     \"name\": \"n\",
     \"description\": \"Eius et animi quos velit et.\",
     \"document_url\": \"http:\\/\\/www.ernser.org\\/harum-mollitia-modi-deserunt-aut-ab-provident-perspiciatis-quo.html\"
@@ -1898,7 +1923,7 @@ const headers = {
 };
 
 let body = {
-    "game_id": "architecto",
+    "game_id": 16,
     "name": "n",
     "description": "Eius et animi quos velit et.",
     "document_url": "http:\/\/www.ernser.org\/harum-mollitia-modi-deserunt-aut-ab-provident-perspiciatis-quo.html"
@@ -1986,14 +2011,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
                                 <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>game_id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>integer</small>&nbsp;
  &nbsp;
-                <input type="text" style="display: none"
-                              name="game_id"                data-endpoint="POSTapi-books"
-               value="architecto"
+                <input type="number" style="display: none"
+               step="any"               name="game_id"                data-endpoint="POSTapi-books"
+               value="16"
                data-component="body">
     <br>
-<p>The <code>id</code> of an existing record in the games table. Example: <code>architecto</code></p>
+<p>The <code>id</code> of an existing record in the games table. Example: <code>16</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
@@ -2043,11 +2068,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://host.docker.internal/api/books/architecto" \
+    "http://host.docker.internal/api/books/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"b\",
+    \"game_id\": 16,
+    \"name\": \"n\",
     \"description\": \"Eius et animi quos velit et.\",
     \"document_url\": \"http:\\/\\/www.ernser.org\\/harum-mollitia-modi-deserunt-aut-ab-provident-perspiciatis-quo.html\"
 }"
@@ -2056,7 +2082,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://host.docker.internal/api/books/architecto"
+    "http://host.docker.internal/api/books/1"
 );
 
 const headers = {
@@ -2065,7 +2091,8 @@ const headers = {
 };
 
 let body = {
-    "name": "b",
+    "game_id": 16,
+    "name": "n",
     "description": "Eius et animi quos velit et.",
     "document_url": "http:\/\/www.ernser.org\/harum-mollitia-modi-deserunt-aut-ab-provident-perspiciatis-quo.html"
 };
@@ -2152,26 +2179,26 @@ You can check the Dev Tools console for debugging information.</code></pre>
                         <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>book</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>integer</small>&nbsp;
  &nbsp;
-                <input type="text" style="display: none"
-                              name="book"                data-endpoint="PUTapi-books--book-"
-               value="architecto"
+                <input type="number" style="display: none"
+               step="any"               name="book"                data-endpoint="PUTapi-books--book-"
+               value="1"
                data-component="url">
     <br>
-<p>The book. Example: <code>architecto</code></p>
+<p>The book. Example: <code>1</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>game_id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>integer</small>&nbsp;
 <i>optional</i> &nbsp;
-                <input type="text" style="display: none"
-                              name="game_id"                data-endpoint="PUTapi-books--book-"
-               value=""
+                <input type="number" style="display: none"
+               step="any"               name="game_id"                data-endpoint="PUTapi-books--book-"
+               value="16"
                data-component="body">
     <br>
-<p>The <code>id</code> of an existing record in the games table.</p>
+<p>The <code>id</code> of an existing record in the games table. Example: <code>16</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
@@ -2179,10 +2206,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="PUTapi-books--book-"
-               value="b"
+               value="n"
                data-component="body">
     <br>
-<p>O campo value não pode ser maior que 255 caracteres. Example: <code>b</code></p>
+<p>O campo value não pode ser maior que 255 caracteres. Example: <code>n</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
@@ -2221,14 +2248,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://host.docker.internal/api/books/architecto" \
+    "http://host.docker.internal/api/books/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://host.docker.internal/api/books/architecto"
+    "http://host.docker.internal/api/books/1"
 );
 
 const headers = {
@@ -2317,14 +2344,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
                         <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>book</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>integer</small>&nbsp;
  &nbsp;
-                <input type="text" style="display: none"
-                              name="book"                data-endpoint="DELETEapi-books--book-"
-               value="architecto"
+                <input type="number" style="display: none"
+               step="any"               name="book"                data-endpoint="DELETEapi-books--book-"
+               value="1"
                data-component="url">
     <br>
-<p>The book. Example: <code>architecto</code></p>
+<p>The book. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -3880,8 +3907,7 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
-access-control-allow-origin: http://host.docker.internal:8000
-access-control-allow-credentials: true
+vary: Origin
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
@@ -3889,126 +3915,252 @@ access-control-allow-credentials: true
         {
             &quot;id&quot;: 1,
             &quot;game_id&quot;: 1,
-            &quot;name&quot;: &quot;Fighter&quot;,
-            &quot;description&quot;: &quot;A master of martial combat, skilled with a variety of weapons and armor.&quot;,
-            &quot;created_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
+            &quot;name&quot;: &quot;Guerreiro&quot;,
+            &quot;description&quot;: &quot;Um mestre do combate marcial, habilidoso com uma variedade de armas e armaduras.&quot;,
+            &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
             &quot;deleted_at&quot;: null,
             &quot;game&quot;: {
                 &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;Dungeons &amp; Dragons 5th Edition&quot;,
-                &quot;description&quot;: &quot;The world&#039;s greatest roleplaying game. Create heroic characters and embark on epic adventures in a fantasy world of magic and monsters.&quot;,
+                &quot;name&quot;: &quot;Dungeons &amp; Dragons&quot;,
+                &quot;description&quot;: &quot;O maior jogo de RPG do mundo. Crie personagens heroicos e embarque em aventuras &eacute;picas em um mundo de fantasia repleto de magia e monstros.&quot;,
                 &quot;version&quot;: &quot;5.0&quot;,
                 &quot;cover_image_url&quot;: null,
                 &quot;is_active&quot;: true,
                 &quot;created_by&quot;: 1,
-                &quot;created_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
-                &quot;updated_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
+                &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
                 &quot;deleted_at&quot;: null
             }
         },
         {
             &quot;id&quot;: 2,
             &quot;game_id&quot;: 1,
-            &quot;name&quot;: &quot;Wizard&quot;,
-            &quot;description&quot;: &quot;A scholarly magic-user capable of manipulating the structures of reality.&quot;,
-            &quot;created_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
+            &quot;name&quot;: &quot;Mago&quot;,
+            &quot;description&quot;: &quot;Um usu&aacute;rio de magia erudito capaz de manipular as estruturas da realidade.&quot;,
+            &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
             &quot;deleted_at&quot;: null,
             &quot;game&quot;: {
                 &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;Dungeons &amp; Dragons 5th Edition&quot;,
-                &quot;description&quot;: &quot;The world&#039;s greatest roleplaying game. Create heroic characters and embark on epic adventures in a fantasy world of magic and monsters.&quot;,
+                &quot;name&quot;: &quot;Dungeons &amp; Dragons&quot;,
+                &quot;description&quot;: &quot;O maior jogo de RPG do mundo. Crie personagens heroicos e embarque em aventuras &eacute;picas em um mundo de fantasia repleto de magia e monstros.&quot;,
                 &quot;version&quot;: &quot;5.0&quot;,
                 &quot;cover_image_url&quot;: null,
                 &quot;is_active&quot;: true,
                 &quot;created_by&quot;: 1,
-                &quot;created_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
-                &quot;updated_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
+                &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
                 &quot;deleted_at&quot;: null
             }
         },
         {
             &quot;id&quot;: 3,
             &quot;game_id&quot;: 1,
-            &quot;name&quot;: &quot;Rogue&quot;,
-            &quot;description&quot;: &quot;A scoundrel who uses stealth and trickery to achieve their goals.&quot;,
-            &quot;created_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
+            &quot;name&quot;: &quot;Ladino&quot;,
+            &quot;description&quot;: &quot;Um patife que usa furtividade e truques para alcan&ccedil;ar seus objetivos.&quot;,
+            &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
             &quot;deleted_at&quot;: null,
             &quot;game&quot;: {
                 &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;Dungeons &amp; Dragons 5th Edition&quot;,
-                &quot;description&quot;: &quot;The world&#039;s greatest roleplaying game. Create heroic characters and embark on epic adventures in a fantasy world of magic and monsters.&quot;,
+                &quot;name&quot;: &quot;Dungeons &amp; Dragons&quot;,
+                &quot;description&quot;: &quot;O maior jogo de RPG do mundo. Crie personagens heroicos e embarque em aventuras &eacute;picas em um mundo de fantasia repleto de magia e monstros.&quot;,
                 &quot;version&quot;: &quot;5.0&quot;,
                 &quot;cover_image_url&quot;: null,
                 &quot;is_active&quot;: true,
                 &quot;created_by&quot;: 1,
-                &quot;created_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
-                &quot;updated_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
+                &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
                 &quot;deleted_at&quot;: null
             }
         },
         {
             &quot;id&quot;: 4,
             &quot;game_id&quot;: 1,
-            &quot;name&quot;: &quot;Cleric&quot;,
-            &quot;description&quot;: &quot;A priestly champion who wields divine magic in service of a higher power.&quot;,
-            &quot;created_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
+            &quot;name&quot;: &quot;Cl&eacute;rico&quot;,
+            &quot;description&quot;: &quot;Um campe&atilde;o sacerdotal que empunha magia divina a servi&ccedil;o de um poder superior.&quot;,
+            &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
             &quot;deleted_at&quot;: null,
             &quot;game&quot;: {
                 &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;Dungeons &amp; Dragons 5th Edition&quot;,
-                &quot;description&quot;: &quot;The world&#039;s greatest roleplaying game. Create heroic characters and embark on epic adventures in a fantasy world of magic and monsters.&quot;,
+                &quot;name&quot;: &quot;Dungeons &amp; Dragons&quot;,
+                &quot;description&quot;: &quot;O maior jogo de RPG do mundo. Crie personagens heroicos e embarque em aventuras &eacute;picas em um mundo de fantasia repleto de magia e monstros.&quot;,
                 &quot;version&quot;: &quot;5.0&quot;,
                 &quot;cover_image_url&quot;: null,
                 &quot;is_active&quot;: true,
                 &quot;created_by&quot;: 1,
-                &quot;created_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
-                &quot;updated_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
+                &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
                 &quot;deleted_at&quot;: null
             }
         },
         {
             &quot;id&quot;: 5,
-            &quot;game_id&quot;: 2,
-            &quot;name&quot;: &quot;Fighter&quot;,
-            &quot;description&quot;: &quot;Fighting for honor, greed, loyalty, or simply the thrill of battle, you are an undisputed master of weaponry and combat techniques.&quot;,
-            &quot;created_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
+            &quot;game_id&quot;: 1,
+            &quot;name&quot;: &quot;Ranger&quot;,
+            &quot;description&quot;: &quot;Um guerreiro das terras selvagens, especialista em rastreamento e sobreviv&ecirc;ncia.&quot;,
+            &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
             &quot;deleted_at&quot;: null,
             &quot;game&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Pathfinder 2nd Edition&quot;,
-                &quot;description&quot;: &quot;A fantasy tabletop roleplaying game where players take on the role of brave adventurers fighting to survive in a world beset by magic and evil.&quot;,
-                &quot;version&quot;: &quot;2.0&quot;,
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Dungeons &amp; Dragons&quot;,
+                &quot;description&quot;: &quot;O maior jogo de RPG do mundo. Crie personagens heroicos e embarque em aventuras &eacute;picas em um mundo de fantasia repleto de magia e monstros.&quot;,
+                &quot;version&quot;: &quot;5.0&quot;,
                 &quot;cover_image_url&quot;: null,
                 &quot;is_active&quot;: true,
                 &quot;created_by&quot;: 1,
-                &quot;created_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
-                &quot;updated_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
+                &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
                 &quot;deleted_at&quot;: null
             }
         },
         {
             &quot;id&quot;: 6,
-            &quot;game_id&quot;: 2,
-            &quot;name&quot;: &quot;Wizard&quot;,
-            &quot;description&quot;: &quot;You seek to uncover the secrets of magic through careful study and rigorous academic pursuit.&quot;,
-            &quot;created_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
+            &quot;game_id&quot;: 1,
+            &quot;name&quot;: &quot;Paladino&quot;,
+            &quot;description&quot;: &quot;Um guerreiro sagrado vinculado a um juramento sagrado, combatendo o mal.&quot;,
+            &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
             &quot;deleted_at&quot;: null,
             &quot;game&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Pathfinder 2nd Edition&quot;,
-                &quot;description&quot;: &quot;A fantasy tabletop roleplaying game where players take on the role of brave adventurers fighting to survive in a world beset by magic and evil.&quot;,
-                &quot;version&quot;: &quot;2.0&quot;,
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Dungeons &amp; Dragons&quot;,
+                &quot;description&quot;: &quot;O maior jogo de RPG do mundo. Crie personagens heroicos e embarque em aventuras &eacute;picas em um mundo de fantasia repleto de magia e monstros.&quot;,
+                &quot;version&quot;: &quot;5.0&quot;,
                 &quot;cover_image_url&quot;: null,
                 &quot;is_active&quot;: true,
                 &quot;created_by&quot;: 1,
-                &quot;created_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
-                &quot;updated_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
+                &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+                &quot;deleted_at&quot;: null
+            }
+        },
+        {
+            &quot;id&quot;: 7,
+            &quot;game_id&quot;: 1,
+            &quot;name&quot;: &quot;B&aacute;rbaro&quot;,
+            &quot;description&quot;: &quot;Um feroz guerreiro de origem primitiva que pode entrar em f&uacute;ria de batalha.&quot;,
+            &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+            &quot;deleted_at&quot;: null,
+            &quot;game&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Dungeons &amp; Dragons&quot;,
+                &quot;description&quot;: &quot;O maior jogo de RPG do mundo. Crie personagens heroicos e embarque em aventuras &eacute;picas em um mundo de fantasia repleto de magia e monstros.&quot;,
+                &quot;version&quot;: &quot;5.0&quot;,
+                &quot;cover_image_url&quot;: null,
+                &quot;is_active&quot;: true,
+                &quot;created_by&quot;: 1,
+                &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+                &quot;deleted_at&quot;: null
+            }
+        },
+        {
+            &quot;id&quot;: 8,
+            &quot;game_id&quot;: 1,
+            &quot;name&quot;: &quot;Bardo&quot;,
+            &quot;description&quot;: &quot;Um mestre das can&ccedil;&otilde;es, discursos e da magia que eles cont&ecirc;m.&quot;,
+            &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+            &quot;deleted_at&quot;: null,
+            &quot;game&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Dungeons &amp; Dragons&quot;,
+                &quot;description&quot;: &quot;O maior jogo de RPG do mundo. Crie personagens heroicos e embarque em aventuras &eacute;picas em um mundo de fantasia repleto de magia e monstros.&quot;,
+                &quot;version&quot;: &quot;5.0&quot;,
+                &quot;cover_image_url&quot;: null,
+                &quot;is_active&quot;: true,
+                &quot;created_by&quot;: 1,
+                &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+                &quot;deleted_at&quot;: null
+            }
+        },
+        {
+            &quot;id&quot;: 9,
+            &quot;game_id&quot;: 1,
+            &quot;name&quot;: &quot;Druida&quot;,
+            &quot;description&quot;: &quot;Um sacerdote da natureza, empunhando magia elemental e se transformando em animais.&quot;,
+            &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+            &quot;deleted_at&quot;: null,
+            &quot;game&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Dungeons &amp; Dragons&quot;,
+                &quot;description&quot;: &quot;O maior jogo de RPG do mundo. Crie personagens heroicos e embarque em aventuras &eacute;picas em um mundo de fantasia repleto de magia e monstros.&quot;,
+                &quot;version&quot;: &quot;5.0&quot;,
+                &quot;cover_image_url&quot;: null,
+                &quot;is_active&quot;: true,
+                &quot;created_by&quot;: 1,
+                &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+                &quot;deleted_at&quot;: null
+            }
+        },
+        {
+            &quot;id&quot;: 10,
+            &quot;game_id&quot;: 1,
+            &quot;name&quot;: &quot;Monge&quot;,
+            &quot;description&quot;: &quot;Um mestre das artes marciais, aproveitando o poder do corpo em busca da perfei&ccedil;&atilde;o f&iacute;sica e espiritual.&quot;,
+            &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+            &quot;deleted_at&quot;: null,
+            &quot;game&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Dungeons &amp; Dragons&quot;,
+                &quot;description&quot;: &quot;O maior jogo de RPG do mundo. Crie personagens heroicos e embarque em aventuras &eacute;picas em um mundo de fantasia repleto de magia e monstros.&quot;,
+                &quot;version&quot;: &quot;5.0&quot;,
+                &quot;cover_image_url&quot;: null,
+                &quot;is_active&quot;: true,
+                &quot;created_by&quot;: 1,
+                &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+                &quot;deleted_at&quot;: null
+            }
+        },
+        {
+            &quot;id&quot;: 11,
+            &quot;game_id&quot;: 1,
+            &quot;name&quot;: &quot;Feiticeiro&quot;,
+            &quot;description&quot;: &quot;Um conjurador que extrai sua magia inata de uma fonte drac&ocirc;nica ou outra origem ex&oacute;tica.&quot;,
+            &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+            &quot;deleted_at&quot;: null,
+            &quot;game&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Dungeons &amp; Dragons&quot;,
+                &quot;description&quot;: &quot;O maior jogo de RPG do mundo. Crie personagens heroicos e embarque em aventuras &eacute;picas em um mundo de fantasia repleto de magia e monstros.&quot;,
+                &quot;version&quot;: &quot;5.0&quot;,
+                &quot;cover_image_url&quot;: null,
+                &quot;is_active&quot;: true,
+                &quot;created_by&quot;: 1,
+                &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+                &quot;deleted_at&quot;: null
+            }
+        },
+        {
+            &quot;id&quot;: 12,
+            &quot;game_id&quot;: 1,
+            &quot;name&quot;: &quot;Bruxo&quot;,
+            &quot;description&quot;: &quot;Um usu&aacute;rio de magia que fez um pacto com uma entidade extraplanar.&quot;,
+            &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+            &quot;deleted_at&quot;: null,
+            &quot;game&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Dungeons &amp; Dragons&quot;,
+                &quot;description&quot;: &quot;O maior jogo de RPG do mundo. Crie personagens heroicos e embarque em aventuras &eacute;picas em um mundo de fantasia repleto de magia e monstros.&quot;,
+                &quot;version&quot;: &quot;5.0&quot;,
+                &quot;cover_image_url&quot;: null,
+                &quot;is_active&quot;: true,
+                &quot;created_by&quot;: 1,
+                &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
                 &quot;deleted_at&quot;: null
             }
         }
@@ -4019,9 +4171,9 @@ access-control-allow-credentials: true
             &quot;current_page&quot;: 1,
             &quot;last_page&quot;: 1,
             &quot;per_page&quot;: 15,
-            &quot;total&quot;: 6,
+            &quot;total&quot;: 12,
             &quot;from&quot;: 1,
-            &quot;to&quot;: 6,
+            &quot;to&quot;: 12,
             &quot;has_more_pages&quot;: false,
             &quot;links&quot;: {
                 &quot;first&quot;: &quot;http://host.docker.internal/api/classes?page=1&quot;,
@@ -4105,27 +4257,27 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="classes-GETapi-classes--class-">GET api/classes/{class}</h2>
+                    <h2 id="classes-GETapi-classes--gameClass_id-">GET api/classes/{gameClass_id}</h2>
 
 <p>
 </p>
 
 
 
-<span id="example-requests-GETapi-classes--class-">
+<span id="example-requests-GETapi-classes--gameClass_id-">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://host.docker.internal/api/classes/architecto" \
+    --get "http://host.docker.internal/api/classes/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://host.docker.internal/api/classes/architecto"
+    "http://host.docker.internal/api/classes/1"
 );
 
 const headers = {
@@ -4140,9 +4292,9 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-GETapi-classes--class-">
+<span id="example-responses-GETapi-classes--gameClass_id-">
             <blockquote>
-            <p>Example response (500):</p>
+            <p>Example response (200):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -4150,52 +4302,73 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
-access-control-allow-origin: http://host.docker.internal:8000
-access-control-allow-credentials: true
+vary: Origin
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Server Error&quot;
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;game_id&quot;: 1,
+        &quot;name&quot;: &quot;Guerreiro&quot;,
+        &quot;description&quot;: &quot;Um mestre do combate marcial, habilidoso com uma variedade de armas e armaduras.&quot;,
+        &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+        &quot;deleted_at&quot;: null,
+        &quot;game&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Dungeons &amp; Dragons&quot;,
+            &quot;description&quot;: &quot;O maior jogo de RPG do mundo. Crie personagens heroicos e embarque em aventuras &eacute;picas em um mundo de fantasia repleto de magia e monstros.&quot;,
+            &quot;version&quot;: &quot;5.0&quot;,
+            &quot;cover_image_url&quot;: null,
+            &quot;is_active&quot;: true,
+            &quot;created_by&quot;: 1,
+            &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+            &quot;deleted_at&quot;: null
+        }
+    },
+    &quot;message&quot;: &quot;Classe recuperada com sucesso&quot;,
+    &quot;meta&quot;: null
 }</code>
  </pre>
     </span>
-<span id="execution-results-GETapi-classes--class-" hidden>
+<span id="execution-results-GETapi-classes--gameClass_id-" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-classes--class-"></span>:
+                id="execution-response-status-GETapi-classes--gameClass_id-"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-classes--class-"
+    <pre class="json"><code id="execution-response-content-GETapi-classes--gameClass_id-"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-GETapi-classes--class-" hidden>
+<span id="execution-error-GETapi-classes--gameClass_id-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-classes--class-">
+    <pre><code id="execution-error-message-GETapi-classes--gameClass_id-">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-GETapi-classes--class-" data-method="GET"
-      data-path="api/classes/{class}"
+<form id="form-GETapi-classes--gameClass_id-" data-method="GET"
+      data-path="api/classes/{gameClass_id}"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-classes--class-', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-classes--gameClass_id-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-classes--class-"
-                    onclick="tryItOut('GETapi-classes--class-');">Try it out ⚡
+                    id="btn-tryout-GETapi-classes--gameClass_id-"
+                    onclick="tryItOut('GETapi-classes--gameClass_id-');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-classes--class-"
-                    onclick="cancelTryOut('GETapi-classes--class-');" hidden>Cancel 🛑
+                    id="btn-canceltryout-GETapi-classes--gameClass_id-"
+                    onclick="cancelTryOut('GETapi-classes--gameClass_id-');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-classes--class-"
+                    id="btn-executetryout-GETapi-classes--gameClass_id-"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -4203,7 +4376,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
-            <b><code>api/classes/{class}</code></b>
+            <b><code>api/classes/{gameClass_id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -4211,7 +4384,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-classes--class-"
+                              name="Content-Type"                data-endpoint="GETapi-classes--gameClass_id-"
                value="application/json"
                data-component="header">
     <br>
@@ -4222,7 +4395,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-classes--class-"
+                              name="Accept"                data-endpoint="GETapi-classes--gameClass_id-"
                value="application/json"
                data-component="header">
     <br>
@@ -4230,15 +4403,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>class</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+                <b style="line-height: 2;"><code>gameClass_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
  &nbsp;
-                <input type="text" style="display: none"
-                              name="class"                data-endpoint="GETapi-classes--class-"
-               value="architecto"
+                <input type="number" style="display: none"
+               step="any"               name="gameClass_id"                data-endpoint="GETapi-classes--gameClass_id-"
+               value="1"
                data-component="url">
     <br>
-<p>The class. Example: <code>architecto</code></p>
+<p>The ID of the gameClass. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -4259,7 +4432,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"game_id\": \"architecto\",
+    \"game_id\": 16,
     \"name\": \"n\",
     \"description\": \"Eius et animi quos velit et.\"
 }"
@@ -4277,7 +4450,7 @@ const headers = {
 };
 
 let body = {
-    "game_id": "architecto",
+    "game_id": 16,
     "name": "n",
     "description": "Eius et animi quos velit et."
 };
@@ -4364,14 +4537,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
                                 <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>game_id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>integer</small>&nbsp;
  &nbsp;
-                <input type="text" style="display: none"
-                              name="game_id"                data-endpoint="POSTapi-classes"
-               value="architecto"
+                <input type="number" style="display: none"
+               step="any"               name="game_id"                data-endpoint="POSTapi-classes"
+               value="16"
                data-component="body">
     <br>
-<p>The <code>id</code> of an existing record in the games table. Example: <code>architecto</code></p>
+<p>The <code>id</code> of an existing record in the games table. Example: <code>16</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
@@ -4397,24 +4570,25 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                    <h2 id="classes-PUTapi-classes--class-">PUT api/classes/{class}</h2>
+                    <h2 id="classes-PUTapi-classes--gameClass_id-">PUT api/classes/{gameClass_id}</h2>
 
 <p>
 </p>
 
 
 
-<span id="example-requests-PUTapi-classes--class-">
+<span id="example-requests-PUTapi-classes--gameClass_id-">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://host.docker.internal/api/classes/architecto" \
+    "http://host.docker.internal/api/classes/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"b\",
+    \"game_id\": 16,
+    \"name\": \"n\",
     \"description\": \"Eius et animi quos velit et.\"
 }"
 </code></pre></div>
@@ -4422,7 +4596,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://host.docker.internal/api/classes/architecto"
+    "http://host.docker.internal/api/classes/1"
 );
 
 const headers = {
@@ -4431,7 +4605,8 @@ const headers = {
 };
 
 let body = {
-    "name": "b",
+    "game_id": 16,
+    "name": "n",
     "description": "Eius et animi quos velit et."
 };
 
@@ -4443,45 +4618,45 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-PUTapi-classes--class-">
+<span id="example-responses-PUTapi-classes--gameClass_id-">
 </span>
-<span id="execution-results-PUTapi-classes--class-" hidden>
+<span id="execution-results-PUTapi-classes--gameClass_id-" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-PUTapi-classes--class-"></span>:
+                id="execution-response-status-PUTapi-classes--gameClass_id-"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-PUTapi-classes--class-"
+    <pre class="json"><code id="execution-response-content-PUTapi-classes--gameClass_id-"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-PUTapi-classes--class-" hidden>
+<span id="execution-error-PUTapi-classes--gameClass_id-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-PUTapi-classes--class-">
+    <pre><code id="execution-error-message-PUTapi-classes--gameClass_id-">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-PUTapi-classes--class-" data-method="PUT"
-      data-path="api/classes/{class}"
+<form id="form-PUTapi-classes--gameClass_id-" data-method="PUT"
+      data-path="api/classes/{gameClass_id}"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('PUTapi-classes--class-', this);">
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-classes--gameClass_id-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-PUTapi-classes--class-"
-                    onclick="tryItOut('PUTapi-classes--class-');">Try it out ⚡
+                    id="btn-tryout-PUTapi-classes--gameClass_id-"
+                    onclick="tryItOut('PUTapi-classes--gameClass_id-');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-PUTapi-classes--class-"
-                    onclick="cancelTryOut('PUTapi-classes--class-');" hidden>Cancel 🛑
+                    id="btn-canceltryout-PUTapi-classes--gameClass_id-"
+                    onclick="cancelTryOut('PUTapi-classes--gameClass_id-');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-PUTapi-classes--class-"
+                    id="btn-executetryout-PUTapi-classes--gameClass_id-"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -4489,7 +4664,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-darkblue">PUT</small>
-            <b><code>api/classes/{class}</code></b>
+            <b><code>api/classes/{gameClass_id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -4497,7 +4672,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="PUTapi-classes--class-"
+                              name="Content-Type"                data-endpoint="PUTapi-classes--gameClass_id-"
                value="application/json"
                data-component="header">
     <br>
@@ -4508,7 +4683,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="PUTapi-classes--class-"
+                              name="Accept"                data-endpoint="PUTapi-classes--gameClass_id-"
                value="application/json"
                data-component="header">
     <br>
@@ -4516,45 +4691,45 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>class</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+                <b style="line-height: 2;"><code>gameClass_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
  &nbsp;
-                <input type="text" style="display: none"
-                              name="class"                data-endpoint="PUTapi-classes--class-"
-               value="architecto"
+                <input type="number" style="display: none"
+               step="any"               name="gameClass_id"                data-endpoint="PUTapi-classes--gameClass_id-"
+               value="1"
                data-component="url">
     <br>
-<p>The class. Example: <code>architecto</code></p>
+<p>The ID of the gameClass. Example: <code>1</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>game_id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>integer</small>&nbsp;
 <i>optional</i> &nbsp;
-                <input type="text" style="display: none"
-                              name="game_id"                data-endpoint="PUTapi-classes--class-"
-               value=""
+                <input type="number" style="display: none"
+               step="any"               name="game_id"                data-endpoint="PUTapi-classes--gameClass_id-"
+               value="16"
                data-component="body">
     <br>
-<p>The <code>id</code> of an existing record in the games table.</p>
+<p>The <code>id</code> of an existing record in the games table. Example: <code>16</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
-                              name="name"                data-endpoint="PUTapi-classes--class-"
-               value="b"
+                              name="name"                data-endpoint="PUTapi-classes--gameClass_id-"
+               value="n"
                data-component="body">
     <br>
-<p>O campo value não pode ser maior que 255 caracteres. Example: <code>b</code></p>
+<p>O campo value não pode ser maior que 255 caracteres. Example: <code>n</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
-                              name="description"                data-endpoint="PUTapi-classes--class-"
+                              name="description"                data-endpoint="PUTapi-classes--gameClass_id-"
                value="Eius et animi quos velit et."
                data-component="body">
     <br>
@@ -4562,27 +4737,27 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                    <h2 id="classes-DELETEapi-classes--class-">DELETE api/classes/{class}</h2>
+                    <h2 id="classes-DELETEapi-classes--gameClass_id-">DELETE api/classes/{gameClass_id}</h2>
 
 <p>
 </p>
 
 
 
-<span id="example-requests-DELETEapi-classes--class-">
+<span id="example-requests-DELETEapi-classes--gameClass_id-">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://host.docker.internal/api/classes/architecto" \
+    "http://host.docker.internal/api/classes/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://host.docker.internal/api/classes/architecto"
+    "http://host.docker.internal/api/classes/1"
 );
 
 const headers = {
@@ -4597,45 +4772,45 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-DELETEapi-classes--class-">
+<span id="example-responses-DELETEapi-classes--gameClass_id-">
 </span>
-<span id="execution-results-DELETEapi-classes--class-" hidden>
+<span id="execution-results-DELETEapi-classes--gameClass_id-" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-DELETEapi-classes--class-"></span>:
+                id="execution-response-status-DELETEapi-classes--gameClass_id-"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-DELETEapi-classes--class-"
+    <pre class="json"><code id="execution-response-content-DELETEapi-classes--gameClass_id-"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-DELETEapi-classes--class-" hidden>
+<span id="execution-error-DELETEapi-classes--gameClass_id-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-DELETEapi-classes--class-">
+    <pre><code id="execution-error-message-DELETEapi-classes--gameClass_id-">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-DELETEapi-classes--class-" data-method="DELETE"
-      data-path="api/classes/{class}"
+<form id="form-DELETEapi-classes--gameClass_id-" data-method="DELETE"
+      data-path="api/classes/{gameClass_id}"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-classes--class-', this);">
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-classes--gameClass_id-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-DELETEapi-classes--class-"
-                    onclick="tryItOut('DELETEapi-classes--class-');">Try it out ⚡
+                    id="btn-tryout-DELETEapi-classes--gameClass_id-"
+                    onclick="tryItOut('DELETEapi-classes--gameClass_id-');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-DELETEapi-classes--class-"
-                    onclick="cancelTryOut('DELETEapi-classes--class-');" hidden>Cancel 🛑
+                    id="btn-canceltryout-DELETEapi-classes--gameClass_id-"
+                    onclick="cancelTryOut('DELETEapi-classes--gameClass_id-');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-DELETEapi-classes--class-"
+                    id="btn-executetryout-DELETEapi-classes--gameClass_id-"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -4643,7 +4818,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-red">DELETE</small>
-            <b><code>api/classes/{class}</code></b>
+            <b><code>api/classes/{gameClass_id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -4651,7 +4826,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="DELETEapi-classes--class-"
+                              name="Content-Type"                data-endpoint="DELETEapi-classes--gameClass_id-"
                value="application/json"
                data-component="header">
     <br>
@@ -4662,7 +4837,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="DELETEapi-classes--class-"
+                              name="Accept"                data-endpoint="DELETEapi-classes--gameClass_id-"
                value="application/json"
                data-component="header">
     <br>
@@ -4670,15 +4845,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>class</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+                <b style="line-height: 2;"><code>gameClass_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
  &nbsp;
-                <input type="text" style="display: none"
-                              name="class"                data-endpoint="DELETEapi-classes--class-"
-               value="architecto"
+                <input type="number" style="display: none"
+               step="any"               name="gameClass_id"                data-endpoint="DELETEapi-classes--gameClass_id-"
+               value="1"
                data-component="url">
     <br>
-<p>The class. Example: <code>architecto</code></p>
+<p>The ID of the gameClass. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -4686,7 +4861,1079 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
     
 
-                                <h2 id="endpoints-POSTapi-upload-avatar">Upload avatar for authenticated user</h2>
+                                <h2 id="endpoints-GETapi-documents--filename-">Serve a document file by filename</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-documents--filename-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://host.docker.internal/api/documents/architecto" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://host.docker.internal/api/documents/architecto"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-documents--filename-">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Document not found&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-documents--filename-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-documents--filename-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-documents--filename-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-documents--filename-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-documents--filename-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-documents--filename-" data-method="GET"
+      data-path="api/documents/{filename}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-documents--filename-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-documents--filename-"
+                    onclick="tryItOut('GETapi-documents--filename-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-documents--filename-"
+                    onclick="cancelTryOut('GETapi-documents--filename-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-documents--filename-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/documents/{filename}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-documents--filename-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-documents--filename-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>filename</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="filename"                data-endpoint="GETapi-documents--filename-"
+               value="architecto"
+               data-component="url">
+    <br>
+<p>Example: <code>architecto</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-GETapi-books--bookId--document">Serve a book&#039;s document</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-books--bookId--document">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://host.docker.internal/api/books/architecto/document" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://host.docker.internal/api/books/architecto/document"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-books--bookId--document">
+            <blockquote>
+            <p>Example response (500):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Server Error&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-books--bookId--document" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-books--bookId--document"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-books--bookId--document"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-books--bookId--document" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-books--bookId--document">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-books--bookId--document" data-method="GET"
+      data-path="api/books/{bookId}/document"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-books--bookId--document', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-books--bookId--document"
+                    onclick="tryItOut('GETapi-books--bookId--document');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-books--bookId--document"
+                    onclick="cancelTryOut('GETapi-books--bookId--document');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-books--bookId--document"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/books/{bookId}/document</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-books--bookId--document"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-books--bookId--document"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>bookId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="bookId"                data-endpoint="GETapi-books--bookId--document"
+               value="architecto"
+               data-component="url">
+    <br>
+<p>Example: <code>architecto</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-GETapi-avatars--filename-">Serve an avatar file by filename</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-avatars--filename-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://host.docker.internal/api/avatars/architecto" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://host.docker.internal/api/avatars/architecto"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-avatars--filename-">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Avatar not found&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-avatars--filename-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-avatars--filename-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-avatars--filename-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-avatars--filename-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-avatars--filename-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-avatars--filename-" data-method="GET"
+      data-path="api/avatars/{filename}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-avatars--filename-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-avatars--filename-"
+                    onclick="tryItOut('GETapi-avatars--filename-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-avatars--filename-"
+                    onclick="cancelTryOut('GETapi-avatars--filename-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-avatars--filename-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/avatars/{filename}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-avatars--filename-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-avatars--filename-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>filename</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="filename"                data-endpoint="GETapi-avatars--filename-"
+               value="architecto"
+               data-component="url">
+    <br>
+<p>Example: <code>architecto</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-GETapi-users--userId--avatar">Serve a user&#039;s avatar</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-users--userId--avatar">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://host.docker.internal/api/users/architecto/avatar" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://host.docker.internal/api/users/architecto/avatar"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-users--userId--avatar">
+    </span>
+<span id="execution-results-GETapi-users--userId--avatar" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-users--userId--avatar"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-users--userId--avatar"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-users--userId--avatar" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-users--userId--avatar">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-users--userId--avatar" data-method="GET"
+      data-path="api/users/{userId}/avatar"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-users--userId--avatar', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-users--userId--avatar"
+                    onclick="tryItOut('GETapi-users--userId--avatar');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-users--userId--avatar"
+                    onclick="cancelTryOut('GETapi-users--userId--avatar');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-users--userId--avatar"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/users/{userId}/avatar</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-users--userId--avatar"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-users--userId--avatar"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>userId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="userId"                data-endpoint="GETapi-users--userId--avatar"
+               value="architecto"
+               data-component="url">
+    <br>
+<p>Example: <code>architecto</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-GETapi-portraits--filename-">Serve a portrait file by filename</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-portraits--filename-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://host.docker.internal/api/portraits/architecto" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://host.docker.internal/api/portraits/architecto"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-portraits--filename-">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Portrait not found&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-portraits--filename-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-portraits--filename-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-portraits--filename-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-portraits--filename-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-portraits--filename-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-portraits--filename-" data-method="GET"
+      data-path="api/portraits/{filename}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-portraits--filename-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-portraits--filename-"
+                    onclick="tryItOut('GETapi-portraits--filename-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-portraits--filename-"
+                    onclick="cancelTryOut('GETapi-portraits--filename-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-portraits--filename-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/portraits/{filename}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-portraits--filename-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-portraits--filename-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>filename</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="filename"                data-endpoint="GETapi-portraits--filename-"
+               value="architecto"
+               data-component="url">
+    <br>
+<p>Example: <code>architecto</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-GETapi-sheets--sheetId--portrait">Serve a character sheet&#039;s portrait</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-sheets--sheetId--portrait">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://host.docker.internal/api/sheets/architecto/portrait" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://host.docker.internal/api/sheets/architecto/portrait"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-sheets--sheetId--portrait">
+            <blockquote>
+            <p>Example response (500):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Server Error&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-sheets--sheetId--portrait" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-sheets--sheetId--portrait"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-sheets--sheetId--portrait"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-sheets--sheetId--portrait" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-sheets--sheetId--portrait">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-sheets--sheetId--portrait" data-method="GET"
+      data-path="api/sheets/{sheetId}/portrait"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-sheets--sheetId--portrait', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-sheets--sheetId--portrait"
+                    onclick="tryItOut('GETapi-sheets--sheetId--portrait');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-sheets--sheetId--portrait"
+                    onclick="cancelTryOut('GETapi-sheets--sheetId--portrait');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-sheets--sheetId--portrait"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/sheets/{sheetId}/portrait</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-sheets--sheetId--portrait"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-sheets--sheetId--portrait"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>sheetId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="sheetId"                data-endpoint="GETapi-sheets--sheetId--portrait"
+               value="architecto"
+               data-component="url">
+    <br>
+<p>Example: <code>architecto</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-GETapi-covers--filename-">Serve a cover image file by filename</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-covers--filename-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://host.docker.internal/api/covers/architecto" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://host.docker.internal/api/covers/architecto"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-covers--filename-">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Cover image not found&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-covers--filename-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-covers--filename-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-covers--filename-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-covers--filename-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-covers--filename-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-covers--filename-" data-method="GET"
+      data-path="api/covers/{filename}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-covers--filename-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-covers--filename-"
+                    onclick="tryItOut('GETapi-covers--filename-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-covers--filename-"
+                    onclick="cancelTryOut('GETapi-covers--filename-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-covers--filename-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/covers/{filename}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-covers--filename-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-covers--filename-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>filename</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="filename"                data-endpoint="GETapi-covers--filename-"
+               value="architecto"
+               data-component="url">
+    <br>
+<p>Example: <code>architecto</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-GETapi-games--gameId--cover">Serve a game&#039;s cover image</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-games--gameId--cover">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://host.docker.internal/api/games/1/cover" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://host.docker.internal/api/games/1/cover"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-games--gameId--cover">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Game cover not found&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-games--gameId--cover" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-games--gameId--cover"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-games--gameId--cover"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-games--gameId--cover" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-games--gameId--cover">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-games--gameId--cover" data-method="GET"
+      data-path="api/games/{gameId}/cover"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-games--gameId--cover', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-games--gameId--cover"
+                    onclick="tryItOut('GETapi-games--gameId--cover');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-games--gameId--cover"
+                    onclick="cancelTryOut('GETapi-games--gameId--cover');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-games--gameId--cover"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/games/{gameId}/cover</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-games--gameId--cover"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-games--gameId--cover"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>gameId</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="gameId"                data-endpoint="GETapi-games--gameId--cover"
+               value="1"
+               data-component="url">
+    <br>
+<p>Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-POSTapi-upload-avatar">Upload avatar for authenticated user</h2>
 
 <p>
 </p>
@@ -5448,12 +6695,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"architecto\",
-    \"birth_date\": \"2025-06-26T00:35:44\",
-    \"avatar_url\": \"http:\\/\\/www.bailey.biz\\/quos-velit-et-fugiat-sunt-nihil-accusantium-harum.html\",
+    \"username\": \"b\",
+    \"name\": \"n\",
+    \"email\": \"ashly64@example.com\",
+    \"birth_date\": \"2021-07-20\",
+    \"avatar_url\": \"http:\\/\\/bailey.com\\/\",
     \"is_admin\": true,
-    \"is_suspended\": true,
-    \"password\": \"gxwmi\\/#iw\\/\"
+    \"is_suspended\": false
 }"
 </code></pre></div>
 
@@ -5469,12 +6717,13 @@ const headers = {
 };
 
 let body = {
-    "name": "architecto",
-    "birth_date": "2025-06-26T00:35:44",
-    "avatar_url": "http:\/\/www.bailey.biz\/quos-velit-et-fugiat-sunt-nihil-accusantium-harum.html",
+    "username": "b",
+    "name": "n",
+    "email": "ashly64@example.com",
+    "birth_date": "2021-07-20",
+    "avatar_url": "http:\/\/bailey.com\/",
     "is_admin": true,
-    "is_suspended": true,
-    "password": "gxwmi\/#iw\/"
+    "is_suspended": false
 };
 
 fetch(url, {
@@ -5575,10 +6824,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="username"                data-endpoint="PUTapi-users--user-"
-               value=""
+               value="b"
                data-component="body">
     <br>
-
+<p>O campo value não pode ser maior que 255 caracteres. Example: <code>b</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
@@ -5586,10 +6835,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="PUTapi-users--user-"
-               value="architecto"
+               value="n"
                data-component="body">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>O campo value não pode ser maior que 255 caracteres. Example: <code>n</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -5597,10 +6846,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="PUTapi-users--user-"
-               value=""
+               value="ashly64@example.com"
                data-component="body">
     <br>
-
+<p>O campo value deve ser um endereço de email válido. O campo value não pode ser maior que 255 caracteres. Example: <code>ashly64@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>birth_date</code></b>&nbsp;&nbsp;
@@ -5608,10 +6857,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="birth_date"                data-endpoint="PUTapi-users--user-"
-               value="2025-06-26T00:35:44"
+               value="2021-07-20"
                data-component="body">
     <br>
-<p>O campo value deve ser uma data válida. Example: <code>2025-06-26T00:35:44</code></p>
+<p>O campo value deve ser uma data válida. O campo value deve ser uma data anterior a <code>today</code>. Example: <code>2021-07-20</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>avatar_url</code></b>&nbsp;&nbsp;
@@ -5619,10 +6868,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="avatar_url"                data-endpoint="PUTapi-users--user-"
-               value="http://www.bailey.biz/quos-velit-et-fugiat-sunt-nihil-accusantium-harum.html"
+               value="http://bailey.com/"
                data-component="body">
     <br>
-<p>Example: <code>http://www.bailey.biz/quos-velit-et-fugiat-sunt-nihil-accusantium-harum.html</code></p>
+<p>Must be a valid URL. Example: <code>http://bailey.com/</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>is_admin</code></b>&nbsp;&nbsp;
@@ -5664,7 +6913,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -5672,10 +6921,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="PUTapi-users--user-"
-               value="gxwmi/#iw/"
+               value=""
                data-component="body">
     <br>
-<p>O campo value deve ter pelo menos 8 caracteres. Example: <code>gxwmi/#iw/</code></p>
+
         </div>
         </form>
 
@@ -6315,7 +7564,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"name\": \"Pathfinder 2e\",
     \"description\": \"A fantasy tabletop RPG\",
     \"version\": \"2.0\",
-    \"cover_image_url\": \"https:\\/\\/example.com\\/cover.jpg\"
+    \"cover_image_url\": \"https:\\/\\/example.com\\/cover.jpg\",
+    \"is_active\": true
 }"
 </code></pre></div>
 
@@ -6335,7 +7585,8 @@ let body = {
     "name": "Pathfinder 2e",
     "description": "A fantasy tabletop RPG",
     "version": "2.0",
-    "cover_image_url": "https:\/\/example.com\/cover.jpg"
+    "cover_image_url": "https:\/\/example.com\/cover.jpg",
+    "is_active": true
 };
 
 fetch(url, {
@@ -6515,6 +7766,27 @@ You can check the Dev Tools console for debugging information.</code></pre>
                data-component="body">
     <br>
 <p>The game cover image URL. Example: <code>https://example.com/cover.jpg</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>is_active</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+                <label data-endpoint="POSTapi-games" style="display: none">
+            <input type="radio" name="is_active"
+                   value="true"
+                   data-endpoint="POSTapi-games"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-games" style="display: none">
+            <input type="radio" name="is_active"
+                   value="false"
+                   data-endpoint="POSTapi-games"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Example: <code>true</code></p>
         </div>
         </form>
 
@@ -7208,7 +8480,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-<p>Update the authenticated user's profile information.</p>
+<p>Update the authenticated user's profile information (excluding password).</p>
 
 <span id="example-requests-PUTapi-profile">
 <blockquote>Example request:</blockquote>
@@ -7225,8 +8497,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"name\": \"John Doe Updated\",
     \"email\": \"john.updated@example.com\",
     \"birth_date\": \"1990-01-01\",
-    \"avatar_url\": \"https:\\/\\/example.com\\/new-avatar.jpg\",
-    \"password\": \"newpassword123\"
+    \"avatar_url\": \"https:\\/\\/example.com\\/new-avatar.jpg\"
 }"
 </code></pre></div>
 
@@ -7247,8 +8518,7 @@ let body = {
     "name": "John Doe Updated",
     "email": "john.updated@example.com",
     "birth_date": "1990-01-01",
-    "avatar_url": "https:\/\/example.com\/new-avatar.jpg",
-    "password": "newpassword123"
+    "avatar_url": "https:\/\/example.com\/new-avatar.jpg"
 };
 
 fetch(url, {
@@ -7276,7 +8546,7 @@ fetch(url, {
         &quot;avatar_url&quot;: &quot;https://example.com/new-avatar.jpg&quot;,
         &quot;is_admin&quot;: false,
         &quot;is_suspended&quot;: false,
-        &quot;email_verified_at&quot;: &quot;2024-01-01T12:00:00.000000Z&quot;,
+        &quot;email_verified_at&quot;: null,
         &quot;created_at&quot;: &quot;2024-01-01T12:00:00.000000Z&quot;,
         &quot;updated_at&quot;: &quot;2024-01-01T13:00:00.000000Z&quot;
     }
@@ -7433,16 +8703,197 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>The user's avatar URL. Example: <code>https://example.com/new-avatar.jpg</code></p>
         </div>
+        </form>
+
+                    <h2 id="profile-PUTapi-profile-password">Change user password</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Change the authenticated user's password.</p>
+
+<span id="example-requests-PUTapi-profile-password">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://host.docker.internal/api/profile/password" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"current_password\": \"currentpassword123\",
+    \"password\": \"newpassword123\",
+    \"password_confirmation\": \"newpassword123\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://host.docker.internal/api/profile/password"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "current_password": "currentpassword123",
+    "password": "newpassword123",
+    "password_confirmation": "newpassword123"
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-profile-password">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Password changed successfully&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;The given data was invalid.&quot;,
+    &quot;errors&quot;: {
+        &quot;current_password&quot;: [
+            &quot;A senha atual est&aacute; incorreta.&quot;
+        ]
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PUTapi-profile-password" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-profile-password"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-profile-password"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PUTapi-profile-password" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-profile-password">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PUTapi-profile-password" data-method="PUT"
+      data-path="api/profile/password"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-profile-password', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-profile-password"
+                    onclick="tryItOut('PUTapi-profile-password');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-profile-password"
+                    onclick="cancelTryOut('PUTapi-profile-password');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-profile-password"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/profile/password</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PUTapi-profile-password"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PUTapi-profile-password"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PUTapi-profile-password"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>current_password</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="current_password"                data-endpoint="PUTapi-profile-password"
+               value="currentpassword123"
+               data-component="body">
+    <br>
+<p>The current password. Example: <code>currentpassword123</code></p>
+        </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
-<i>optional</i> &nbsp;
+ &nbsp;
                 <input type="text" style="display: none"
-                              name="password"                data-endpoint="PUTapi-profile"
+                              name="password"                data-endpoint="PUTapi-profile-password"
                value="newpassword123"
                data-component="body">
     <br>
 <p>The new password (min 8 characters). Example: <code>newpassword123</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>password_confirmation</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="password_confirmation"                data-endpoint="PUTapi-profile-password"
+               value="newpassword123"
+               data-component="body">
+    <br>
+<p>The new password confirmation. Example: <code>newpassword123</code></p>
         </div>
         </form>
 
@@ -7495,8 +8946,7 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
-access-control-allow-origin: http://host.docker.internal:8000
-access-control-allow-credentials: true
+vary: Origin
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
@@ -7504,63 +8954,63 @@ access-control-allow-credentials: true
         {
             &quot;id&quot;: 1,
             &quot;game_id&quot;: 1,
-            &quot;name&quot;: &quot;Human&quot;,
-            &quot;description&quot;: &quot;Versatile and ambitious, humans are the most common race in most fantasy worlds.&quot;,
-            &quot;created_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
+            &quot;name&quot;: &quot;Humano&quot;,
+            &quot;description&quot;: &quot;Vers&aacute;teis e ambiciosos, os humanos s&atilde;o a ra&ccedil;a mais comum na maioria dos mundos de fantasia.&quot;,
+            &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
             &quot;deleted_at&quot;: null,
             &quot;game&quot;: {
                 &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;Dungeons &amp; Dragons 5th Edition&quot;,
-                &quot;description&quot;: &quot;The world&#039;s greatest roleplaying game. Create heroic characters and embark on epic adventures in a fantasy world of magic and monsters.&quot;,
+                &quot;name&quot;: &quot;Dungeons &amp; Dragons&quot;,
+                &quot;description&quot;: &quot;O maior jogo de RPG do mundo. Crie personagens heroicos e embarque em aventuras &eacute;picas em um mundo de fantasia repleto de magia e monstros.&quot;,
                 &quot;version&quot;: &quot;5.0&quot;,
                 &quot;cover_image_url&quot;: null,
                 &quot;is_active&quot;: true,
                 &quot;created_by&quot;: 1,
-                &quot;created_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
-                &quot;updated_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
+                &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
                 &quot;deleted_at&quot;: null
             }
         },
         {
             &quot;id&quot;: 2,
             &quot;game_id&quot;: 1,
-            &quot;name&quot;: &quot;Elf&quot;,
-            &quot;description&quot;: &quot;Magical people of otherworldly grace, living in places of ethereal beauty.&quot;,
-            &quot;created_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
+            &quot;name&quot;: &quot;Elfo&quot;,
+            &quot;description&quot;: &quot;Povo m&aacute;gico de gra&ccedil;a sobrenatural, vivendo em lugares de beleza et&eacute;rea.&quot;,
+            &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
             &quot;deleted_at&quot;: null,
             &quot;game&quot;: {
                 &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;Dungeons &amp; Dragons 5th Edition&quot;,
-                &quot;description&quot;: &quot;The world&#039;s greatest roleplaying game. Create heroic characters and embark on epic adventures in a fantasy world of magic and monsters.&quot;,
+                &quot;name&quot;: &quot;Dungeons &amp; Dragons&quot;,
+                &quot;description&quot;: &quot;O maior jogo de RPG do mundo. Crie personagens heroicos e embarque em aventuras &eacute;picas em um mundo de fantasia repleto de magia e monstros.&quot;,
                 &quot;version&quot;: &quot;5.0&quot;,
                 &quot;cover_image_url&quot;: null,
                 &quot;is_active&quot;: true,
                 &quot;created_by&quot;: 1,
-                &quot;created_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
-                &quot;updated_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
+                &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
                 &quot;deleted_at&quot;: null
             }
         },
         {
             &quot;id&quot;: 3,
             &quot;game_id&quot;: 1,
-            &quot;name&quot;: &quot;Dwarf&quot;,
-            &quot;description&quot;: &quot;Bold and hardy, dwarves are known as skilled warriors, miners, and workers of stone and metal.&quot;,
-            &quot;created_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
+            &quot;name&quot;: &quot;An&atilde;o&quot;,
+            &quot;description&quot;: &quot;Corajosos e resistentes, os an&otilde;es s&atilde;o conhecidos como guerreiros habilidosos, mineradores e trabalhadores de pedra e metal.&quot;,
+            &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
             &quot;deleted_at&quot;: null,
             &quot;game&quot;: {
                 &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;Dungeons &amp; Dragons 5th Edition&quot;,
-                &quot;description&quot;: &quot;The world&#039;s greatest roleplaying game. Create heroic characters and embark on epic adventures in a fantasy world of magic and monsters.&quot;,
+                &quot;name&quot;: &quot;Dungeons &amp; Dragons&quot;,
+                &quot;description&quot;: &quot;O maior jogo de RPG do mundo. Crie personagens heroicos e embarque em aventuras &eacute;picas em um mundo de fantasia repleto de magia e monstros.&quot;,
                 &quot;version&quot;: &quot;5.0&quot;,
                 &quot;cover_image_url&quot;: null,
                 &quot;is_active&quot;: true,
                 &quot;created_by&quot;: 1,
-                &quot;created_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
-                &quot;updated_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
+                &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
                 &quot;deleted_at&quot;: null
             }
         },
@@ -7568,62 +9018,83 @@ access-control-allow-credentials: true
             &quot;id&quot;: 4,
             &quot;game_id&quot;: 1,
             &quot;name&quot;: &quot;Halfling&quot;,
-            &quot;description&quot;: &quot;Small folk who love peace, good food, hearth and home.&quot;,
-            &quot;created_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
+            &quot;description&quot;: &quot;Pequeno povo que ama a paz, boa comida, lar e conforto.&quot;,
+            &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
             &quot;deleted_at&quot;: null,
             &quot;game&quot;: {
                 &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;Dungeons &amp; Dragons 5th Edition&quot;,
-                &quot;description&quot;: &quot;The world&#039;s greatest roleplaying game. Create heroic characters and embark on epic adventures in a fantasy world of magic and monsters.&quot;,
+                &quot;name&quot;: &quot;Dungeons &amp; Dragons&quot;,
+                &quot;description&quot;: &quot;O maior jogo de RPG do mundo. Crie personagens heroicos e embarque em aventuras &eacute;picas em um mundo de fantasia repleto de magia e monstros.&quot;,
                 &quot;version&quot;: &quot;5.0&quot;,
                 &quot;cover_image_url&quot;: null,
                 &quot;is_active&quot;: true,
                 &quot;created_by&quot;: 1,
-                &quot;created_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
-                &quot;updated_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
+                &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
                 &quot;deleted_at&quot;: null
             }
         },
         {
             &quot;id&quot;: 5,
-            &quot;game_id&quot;: 2,
-            &quot;name&quot;: &quot;Human&quot;,
-            &quot;description&quot;: &quot;Ambitious, sometimes heroic, and always confident, humans have an ability to work together toward common goals.&quot;,
-            &quot;created_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
+            &quot;game_id&quot;: 1,
+            &quot;name&quot;: &quot;Meio-Elfo&quot;,
+            &quot;description&quot;: &quot;Caminhando entre dois mundos, mas n&atilde;o pertencendo verdadeiramente a nenhum deles.&quot;,
+            &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
             &quot;deleted_at&quot;: null,
             &quot;game&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Pathfinder 2nd Edition&quot;,
-                &quot;description&quot;: &quot;A fantasy tabletop roleplaying game where players take on the role of brave adventurers fighting to survive in a world beset by magic and evil.&quot;,
-                &quot;version&quot;: &quot;2.0&quot;,
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Dungeons &amp; Dragons&quot;,
+                &quot;description&quot;: &quot;O maior jogo de RPG do mundo. Crie personagens heroicos e embarque em aventuras &eacute;picas em um mundo de fantasia repleto de magia e monstros.&quot;,
+                &quot;version&quot;: &quot;5.0&quot;,
                 &quot;cover_image_url&quot;: null,
                 &quot;is_active&quot;: true,
                 &quot;created_by&quot;: 1,
-                &quot;created_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
-                &quot;updated_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
+                &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
                 &quot;deleted_at&quot;: null
             }
         },
         {
             &quot;id&quot;: 6,
-            &quot;game_id&quot;: 2,
-            &quot;name&quot;: &quot;Elf&quot;,
-            &quot;description&quot;: &quot;As an ancient people, elves have seen great change and have the perspective that can come only from watching the arc of history.&quot;,
-            &quot;created_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
+            &quot;game_id&quot;: 1,
+            &quot;name&quot;: &quot;Meio-Orc&quot;,
+            &quot;description&quot;: &quot;Alguns meio-orcs vivem entre humanos, lutando contra seus impulsos violentos.&quot;,
+            &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
             &quot;deleted_at&quot;: null,
             &quot;game&quot;: {
-                &quot;id&quot;: 2,
-                &quot;name&quot;: &quot;Pathfinder 2nd Edition&quot;,
-                &quot;description&quot;: &quot;A fantasy tabletop roleplaying game where players take on the role of brave adventurers fighting to survive in a world beset by magic and evil.&quot;,
-                &quot;version&quot;: &quot;2.0&quot;,
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Dungeons &amp; Dragons&quot;,
+                &quot;description&quot;: &quot;O maior jogo de RPG do mundo. Crie personagens heroicos e embarque em aventuras &eacute;picas em um mundo de fantasia repleto de magia e monstros.&quot;,
+                &quot;version&quot;: &quot;5.0&quot;,
                 &quot;cover_image_url&quot;: null,
                 &quot;is_active&quot;: true,
                 &quot;created_by&quot;: 1,
-                &quot;created_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
-                &quot;updated_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
+                &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+                &quot;deleted_at&quot;: null
+            }
+        },
+        {
+            &quot;id&quot;: 7,
+            &quot;game_id&quot;: 1,
+            &quot;name&quot;: &quot;Tiefling&quot;,
+            &quot;description&quot;: &quot;Descendentes de humanos com heran&ccedil;a infernal, carregando o legado de seus ancestrais.&quot;,
+            &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+            &quot;deleted_at&quot;: null,
+            &quot;game&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Dungeons &amp; Dragons&quot;,
+                &quot;description&quot;: &quot;O maior jogo de RPG do mundo. Crie personagens heroicos e embarque em aventuras &eacute;picas em um mundo de fantasia repleto de magia e monstros.&quot;,
+                &quot;version&quot;: &quot;5.0&quot;,
+                &quot;cover_image_url&quot;: null,
+                &quot;is_active&quot;: true,
+                &quot;created_by&quot;: 1,
+                &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
                 &quot;deleted_at&quot;: null
             }
         }
@@ -7634,9 +9105,9 @@ access-control-allow-credentials: true
             &quot;current_page&quot;: 1,
             &quot;last_page&quot;: 1,
             &quot;per_page&quot;: 15,
-            &quot;total&quot;: 6,
+            &quot;total&quot;: 7,
             &quot;from&quot;: 1,
-            &quot;to&quot;: 6,
+            &quot;to&quot;: 7,
             &quot;has_more_pages&quot;: false,
             &quot;links&quot;: {
                 &quot;first&quot;: &quot;http://host.docker.internal/api/races?page=1&quot;,
@@ -7765,29 +9236,28 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
-access-control-allow-origin: http://host.docker.internal:8000
-access-control-allow-credentials: true
+vary: Origin
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
         &quot;id&quot;: 1,
         &quot;game_id&quot;: 1,
-        &quot;name&quot;: &quot;Human&quot;,
-        &quot;description&quot;: &quot;Versatile and ambitious, humans are the most common race in most fantasy worlds.&quot;,
-        &quot;created_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
+        &quot;name&quot;: &quot;Humano&quot;,
+        &quot;description&quot;: &quot;Vers&aacute;teis e ambiciosos, os humanos s&atilde;o a ra&ccedil;a mais comum na maioria dos mundos de fantasia.&quot;,
+        &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
         &quot;deleted_at&quot;: null,
         &quot;game&quot;: {
             &quot;id&quot;: 1,
-            &quot;name&quot;: &quot;Dungeons &amp; Dragons 5th Edition&quot;,
-            &quot;description&quot;: &quot;The world&#039;s greatest roleplaying game. Create heroic characters and embark on epic adventures in a fantasy world of magic and monsters.&quot;,
+            &quot;name&quot;: &quot;Dungeons &amp; Dragons&quot;,
+            &quot;description&quot;: &quot;O maior jogo de RPG do mundo. Crie personagens heroicos e embarque em aventuras &eacute;picas em um mundo de fantasia repleto de magia e monstros.&quot;,
             &quot;version&quot;: &quot;5.0&quot;,
             &quot;cover_image_url&quot;: null,
             &quot;is_active&quot;: true,
             &quot;created_by&quot;: 1,
-            &quot;created_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-06-26T00:35:39.000000Z&quot;,
+            &quot;created_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-06-26T18:42:53.000000Z&quot;,
             &quot;deleted_at&quot;: null
         }
     },
@@ -7896,7 +9366,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"game_id\": \"architecto\",
+    \"game_id\": 16,
     \"name\": \"n\",
     \"description\": \"Eius et animi quos velit et.\"
 }"
@@ -7914,7 +9384,7 @@ const headers = {
 };
 
 let body = {
-    "game_id": "architecto",
+    "game_id": 16,
     "name": "n",
     "description": "Eius et animi quos velit et."
 };
@@ -8001,14 +9471,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
                                 <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>game_id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>integer</small>&nbsp;
  &nbsp;
-                <input type="text" style="display: none"
-                              name="game_id"                data-endpoint="POSTapi-races"
-               value="architecto"
+                <input type="number" style="display: none"
+               step="any"               name="game_id"                data-endpoint="POSTapi-races"
+               value="16"
                data-component="body">
     <br>
-<p>The <code>id</code> of an existing record in the games table. Example: <code>architecto</code></p>
+<p>The <code>id</code> of an existing record in the games table. Example: <code>16</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
@@ -8051,7 +9521,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"b\",
+    \"game_id\": 16,
+    \"name\": \"n\",
     \"description\": \"Eius et animi quos velit et.\"
 }"
 </code></pre></div>
@@ -8068,7 +9539,8 @@ const headers = {
 };
 
 let body = {
-    "name": "b",
+    "game_id": 16,
+    "name": "n",
     "description": "Eius et animi quos velit et."
 };
 
@@ -8166,14 +9638,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>game_id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>integer</small>&nbsp;
 <i>optional</i> &nbsp;
-                <input type="text" style="display: none"
-                              name="game_id"                data-endpoint="PUTapi-races--race-"
-               value=""
+                <input type="number" style="display: none"
+               step="any"               name="game_id"                data-endpoint="PUTapi-races--race-"
+               value="16"
                data-component="body">
     <br>
-<p>The <code>id</code> of an existing record in the games table.</p>
+<p>The <code>id</code> of an existing record in the games table. Example: <code>16</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
@@ -8181,10 +9653,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="PUTapi-races--race-"
-               value="b"
+               value="n"
                data-component="body">
     <br>
-<p>O campo value não pode ser maior que 255 caracteres. Example: <code>b</code></p>
+<p>O campo value não pode ser maior que 255 caracteres. Example: <code>n</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;

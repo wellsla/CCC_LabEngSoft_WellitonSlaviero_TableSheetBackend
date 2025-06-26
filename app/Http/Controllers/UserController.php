@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -52,24 +53,13 @@ class UserController extends Controller
         return $this->paginatedResponse($users, 'Users retrieved successfully');
     }
 
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
-        $user = User::find($id);
+        $user = User::withTrashed()->find($id);
 
         if (!$user) {
             return $this->notFoundResponse('Usuário não encontrado. O ID informado não existe ou foi removido.');
         }
-
-        $request->validate([
-            'username' => 'string|unique:users,username,' . $user->id,
-            'name' => 'string',
-            'email' => 'string|email|unique:users,email,' . $user->id,
-            'birth_date' => 'date',
-            'avatar_url' => 'string|nullable',
-            'is_admin' => 'boolean',
-            'is_suspended' => 'boolean',
-            'password' => 'string|min:8|nullable',
-        ]);
 
         $data = $request->only([
             'username', 'name', 'email', 'birth_date', 'avatar_url', 'is_admin', 'is_suspended'
@@ -86,7 +76,7 @@ class UserController extends Controller
 
     public function suspend($id)
     {
-        $user = User::find($id);
+        $user = User::withTrashed()->find($id);
 
         if (!$user) {
             return $this->notFoundResponse('Usuário não encontrado. O ID informado não existe ou foi removido.');
@@ -102,7 +92,7 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        $user = User::find($id);
+        $user = User::withTrashed()->find($id);
 
         if (!$user) {
             return $this->notFoundResponse('Usuário não encontrado. O ID informado não existe ou foi removido.');

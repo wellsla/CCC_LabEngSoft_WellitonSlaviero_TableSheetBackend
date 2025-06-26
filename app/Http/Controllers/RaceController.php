@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Race;
+use App\Http\Requests\RaceRequest;
 use Illuminate\Http\Request;
 
 /**
@@ -58,13 +59,8 @@ class RaceController extends Controller
         );
     }
 
-    public function store(Request $request)
+    public function store(RaceRequest $request)
     {
-        $request->validate([
-            'game_id' => 'required|exists:games,id',
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-        ]);
 
         $race = Race::create([
             'game_id' => $request->game_id,
@@ -75,19 +71,13 @@ class RaceController extends Controller
         return $this->createdResponse($race->load('game'), 'Race created successfully');
     }
 
-    public function update(Request $request, $id)
+    public function update(RaceRequest $request, $id)
     {
         $race = Race::find($id);
 
         if (!$race) {
             return $this->notFoundResponse('Raça não encontrada. O ID informado não existe ou foi removido.');
         }
-
-        $request->validate([
-            'game_id' => 'exists:games,id',
-            'name' => 'string|max:255',
-            'description' => 'nullable|string',
-        ]);
 
         $race->update($request->only([
             'game_id', 'name', 'description'

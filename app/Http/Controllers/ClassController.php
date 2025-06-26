@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\GameClass;
+use App\Http\Requests\ClassRequest;
 use Illuminate\Http\Request;
 
 /**
@@ -44,27 +45,16 @@ class ClassController extends Controller
         return $this->paginatedResponse($classes, 'Classes retrieved successfully');
     }
 
-    public function show($id)
+    public function show(GameClass $gameClass)
     {
-        $class = GameClass::find($id);
-
-        if (!$class) {
-            return $this->notFoundResponse('Classe não encontrada. O ID informado não existe ou foi removido.');
-        }
-
         return $this->successResponse(
-            $class->load('game'),
+            $gameClass->load('game'),
             'Classe recuperada com sucesso'
         );
     }
 
-    public function store(Request $request)
+    public function store(ClassRequest $request)
     {
-        $request->validate([
-            'game_id' => 'required|exists:games,id',
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-        ]);
 
         $class = GameClass::create([
             'game_id' => $request->game_id,
@@ -75,36 +65,19 @@ class ClassController extends Controller
         return $this->createdResponse($class->load('game'), 'Class created successfully');
     }
 
-    public function update(Request $request, $id)
+    public function update(ClassRequest $request, GameClass $gameClass)
     {
-        $class = GameClass::find($id);
 
-        if (!$class) {
-            return $this->notFoundResponse('Classe não encontrada. O ID informado não existe ou foi removido.');
-        }
-
-        $request->validate([
-            'game_id' => 'exists:games,id',
-            'name' => 'string|max:255',
-            'description' => 'nullable|string',
-        ]);
-
-        $class->update($request->only([
+        $gameClass->update($request->only([
             'game_id', 'name', 'description'
         ]));
 
-        return $this->updatedResponse($class->fresh()->load('game'), 'Classe atualizada com sucesso');
+        return $this->updatedResponse($gameClass->fresh()->load('game'), 'Classe atualizada com sucesso');
     }
 
-    public function destroy($id)
+    public function destroy(GameClass $gameClass)
     {
-        $class = GameClass::find($id);
-
-        if (!$class) {
-            return $this->notFoundResponse('Classe não encontrada. O ID informado não existe ou foi removido.');
-        }
-
-        $class->delete();
+        $gameClass->delete();
 
         return $this->deletedResponse('Classe excluída com sucesso');
     }

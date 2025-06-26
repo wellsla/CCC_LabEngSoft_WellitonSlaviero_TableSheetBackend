@@ -174,19 +174,19 @@
             <div class="actions">
                 @if($type === 'email_verification')
                     @if($success)
-                        <a href="{{ $frontendUrl }}/login" class="button">Fazer Login</a>
+                        <a href="{{ $frontendUrl }}/auth/login" class="button">Fazer Login</a>
                         <a href="{{ $frontendUrl }}" class="button button-secondary">Ir para Início</a>
                     @else
                         <a href="{{ $frontendUrl }}/resend-verification" class="button">Reenviar E-mail</a>
-                        <a href="{{ $frontendUrl }}/login" class="button button-secondary">Voltar ao Login</a>
+                        <a href="{{ $frontendUrl }}/auth/login" class="button button-secondary">Voltar ao Login</a>
                     @endif
                 @elseif($type === 'password_reset')
                     @if($success)
-                        <a href="{{ $frontendUrl }}/login" class="button">Fazer Login</a>
+                        <a href="{{ $frontendUrl }}/auth/login" class="button">Fazer Login</a>
                         <a href="{{ $frontendUrl }}" class="button button-secondary">Ir para Início</a>
                     @else
                         <a href="{{ $frontendUrl }}/forgot-password" class="button">Solicitar Novo Link</a>
-                        <a href="{{ $frontendUrl }}/login" class="button button-secondary">Voltar ao Login</a>
+                        <a href="{{ $frontendUrl }}/auth/login" class="button button-secondary">Voltar ao Login</a>
                     @endif
                 @else
                     <a href="{{ $frontendUrl }}" class="button">Voltar ao Início</a>

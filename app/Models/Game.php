@@ -21,6 +21,7 @@ class Game extends Model
         'version',
         'cover_image_url',
         'is_active',
+        'created_by',
     ];
 
     /**

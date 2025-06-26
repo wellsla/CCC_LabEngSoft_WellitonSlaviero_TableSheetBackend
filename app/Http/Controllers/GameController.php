@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Game;
+use App\Http\Requests\GameRequest;
 use Illuminate\Http\Request;
 
 /**
@@ -182,14 +183,8 @@ class GameController extends Controller
      *   }
      * }
      */
-    public function store(Request $request)
+    public function store(GameRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|unique:games',
-            'description' => 'required|string',
-            'version' => 'required|string',
-            'cover_image_url' => 'string|nullable',
-        ]);
 
         $game = Game::create([
             'name' => $request->name,
@@ -235,21 +230,13 @@ class GameController extends Controller
      *   "message": "This action is unauthorized."
      * }
      */
-    public function update(Request $request, $id)
+    public function update(GameRequest $request, $id)
     {
         $game = Game::find($id);
 
         if (!$game) {
             return $this->notFoundResponse('Jogo não encontrado. O ID informado não existe ou foi removido.');
         }
-
-        $request->validate([
-            'name' => 'string|unique:games,name,' . $game->id,
-            'description' => 'string',
-            'version' => 'string',
-            'cover_image_url' => 'string|nullable',
-            'is_active' => 'boolean',
-        ]);
 
         $game->update($request->only([
             'name', 'description', 'version', 'cover_image_url', 'is_active'
