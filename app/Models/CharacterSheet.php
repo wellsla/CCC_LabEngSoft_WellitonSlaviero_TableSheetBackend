@@ -16,7 +16,6 @@ class CharacterSheet extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'user_id',
         'game_id',
         'race_id',
         'class_id',
@@ -78,7 +77,7 @@ class CharacterSheet extends Model
     /**
      * Get the class of the character sheet.
      */
-    public function gameClass()
+    public function class()
     {
         return $this->belongsTo(GameClass::class, 'class_id');
     }

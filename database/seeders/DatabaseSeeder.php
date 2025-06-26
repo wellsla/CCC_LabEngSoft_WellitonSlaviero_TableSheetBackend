@@ -23,7 +23,8 @@ class DatabaseSeeder extends Seeder
             'username' => 'admin',
             'name' => 'Administrator',
             'email' => 'admin@tablesheet.com',
-            'password' => Hash::make('password'),
+            'password' => Hash::make(env('ADMIN_DEFAULT_PASSWORD', 'TableSheet@2024!')),
+            'birth_date' => '1990-01-01',
             'is_admin' => true,
             'email_verified_at' => now(),
         ]);

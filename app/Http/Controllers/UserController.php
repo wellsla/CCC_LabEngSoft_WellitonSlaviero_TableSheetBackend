@@ -52,8 +52,14 @@ class UserController extends Controller
         return $this->paginatedResponse($users, 'Users retrieved successfully');
     }
 
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
+        $user = User::find($id);
+
+        if (!$user) {
+            return $this->notFoundResponse('Usuário não encontrado. O ID informado não existe ou foi removido.');
+        }
+
         $request->validate([
             'username' => 'string|unique:users,username,' . $user->id,
             'name' => 'string',
@@ -75,26 +81,38 @@ class UserController extends Controller
 
         $user->update($data);
 
-        return $this->updatedResponse($user->fresh(), 'User updated successfully');
+        return $this->updatedResponse($user->fresh(), 'Usuário atualizado com sucesso');
     }
 
-    public function suspend(User $user)
+    public function suspend($id)
     {
+        $user = User::find($id);
+
+        if (!$user) {
+            return $this->notFoundResponse('Usuário não encontrado. O ID informado não existe ou foi removido.');
+        }
+
         $user->update(['is_suspended' => true]);
 
         // Revoke all tokens
         $user->tokens()->delete();
 
-        return $this->updatedResponse($user->fresh(), 'User suspended successfully');
+        return $this->updatedResponse($user->fresh(), 'Usuário suspenso com sucesso');
     }
 
-    public function destroy(User $user)
+    public function destroy($id)
     {
+        $user = User::find($id);
+
+        if (!$user) {
+            return $this->notFoundResponse('Usuário não encontrado. O ID informado não existe ou foi removido.');
+        }
+
         // Revoke all tokens before deletion
         $user->tokens()->delete();
 
         $user->delete();
 
-        return $this->deletedResponse('User deleted successfully');
+        return $this->deletedResponse('Usuário excluído com sucesso');
     }
 }

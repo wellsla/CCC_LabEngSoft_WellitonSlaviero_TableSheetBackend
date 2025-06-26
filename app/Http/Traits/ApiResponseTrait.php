@@ -10,7 +10,7 @@ trait ApiResponseTrait
     /**
      * Return a success response.
      */
-    protected function successResponse($data = null, string $message = 'Success', array $meta = null, int $statusCode = 200): JsonResponse
+    protected function successResponse($data = null, string $message = 'Sucesso', array $meta = null, int $statusCode = 200): JsonResponse
     {
         return response()->json([
             'data' => $data,
@@ -22,7 +22,7 @@ trait ApiResponseTrait
     /**
      * Return a success response for created resources.
      */
-    protected function createdResponse($data = null, string $message = 'Resource created successfully'): JsonResponse
+    protected function createdResponse($data = null, string $message = 'Recurso criado com sucesso'): JsonResponse
     {
         return $this->successResponse($data, $message, null, 201);
     }
@@ -30,7 +30,7 @@ trait ApiResponseTrait
     /**
      * Return a success response for updated resources.
      */
-    protected function updatedResponse($data = null, string $message = 'Resource updated successfully'): JsonResponse
+    protected function updatedResponse($data = null, string $message = 'Recurso atualizado com sucesso'): JsonResponse
     {
         return $this->successResponse($data, $message);
     }
@@ -38,7 +38,7 @@ trait ApiResponseTrait
     /**
      * Return a success response for deleted resources.
      */
-    protected function deletedResponse(string $message = 'Resource deleted successfully'): JsonResponse
+    protected function deletedResponse(string $message = 'Recurso removido com sucesso'): JsonResponse
     {
         return $this->successResponse(null, $message);
     }
@@ -46,7 +46,7 @@ trait ApiResponseTrait
     /**
      * Return a paginated response.
      */
-    protected function paginatedResponse(LengthAwarePaginator $paginator, string $message = 'Data retrieved successfully'): JsonResponse
+    protected function paginatedResponse(LengthAwarePaginator $paginator, string $message = 'Dados recuperados com sucesso'): JsonResponse
     {
         return response()->json([
             'data' => $paginator->items(),
@@ -74,7 +74,7 @@ trait ApiResponseTrait
     /**
      * Return an error response.
      */
-    protected function errorResponse(string $message = 'An error occurred', array $meta = null, int $statusCode = 400): JsonResponse
+    protected function errorResponse(string $message = 'Um erro ocorreu', array $meta = null, int $statusCode = 400): JsonResponse
     {
         return response()->json([
             'data' => null,
@@ -86,7 +86,7 @@ trait ApiResponseTrait
     /**
      * Return a not found response.
      */
-    protected function notFoundResponse(string $message = 'Resource not found'): JsonResponse
+    protected function notFoundResponse(string $message = 'Recurso não encontrado'): JsonResponse
     {
         return $this->errorResponse($message, null, 404);
     }
@@ -94,7 +94,7 @@ trait ApiResponseTrait
     /**
      * Return an unauthorized response.
      */
-    protected function unauthorizedResponse(string $message = 'Unauthorized'): JsonResponse
+    protected function unauthorizedResponse(string $message = 'Não autenticado'): JsonResponse
     {
         return $this->errorResponse($message, null, 401);
     }
@@ -102,7 +102,7 @@ trait ApiResponseTrait
     /**
      * Return a forbidden response.
      */
-    protected function forbiddenResponse(string $message = 'Forbidden'): JsonResponse
+    protected function forbiddenResponse(string $message = 'Acesso negado'): JsonResponse
     {
         return $this->errorResponse($message, null, 403);
     }

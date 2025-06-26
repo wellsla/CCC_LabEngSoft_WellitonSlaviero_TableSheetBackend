@@ -138,3 +138,6 @@ dist
 # Junie
 /.junie/
 /docs/
+
+# Scribe
+/.scribe/

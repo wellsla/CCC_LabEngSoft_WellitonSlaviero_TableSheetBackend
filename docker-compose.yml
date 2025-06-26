@@ -5,16 +5,22 @@ services:
         build:
             context: './vendor/laravel/sail/runtimes/8.4'
             dockerfile: Dockerfile
-            args: {WWWGROUP: '${WWWGROUP}'}
+            args:
+                WWWGROUP: '${WWWGROUP:-1000}'
+                WWWUSER: '${WWWUSER:-1000}'
         ports:
             - '${APP_PORT:-80}:80'
         working_dir: '/var/www/html'
         volumes:
-            - '.:/var/www/html'
+            - '.:/var/www/html:delegated'
         networks:
             - sail
         depends_on:
             - pgsql
+        environment:
+            - WWWUSER=${WWWUSER:-1000}
+            - WWWGROUP=${WWWGROUP:-1000}
+
     pgsql:
         image: 'postgres:17'
         ports:
@@ -27,11 +33,19 @@ services:
             - 'sail-pgsql:/var/lib/postgresql/data'
         networks:
             - sail
+
+    mailpit:
+        image: 'axllent/mailpit:latest'
+        container_name: 'tablesheet-mailpit'
+        ports:
+            - '${FORWARD_MAILPIT_PORT:-1025}:1025'
+            - '${FORWARD_MAILPIT_DASHBOARD_PORT:-8025}:8025'
+        networks:
+            - sail
+
 networks:
     sail:
         driver: bridge
 volumes:
     sail-pgsql:
-        driver: local
-    sail-redis:
         driver: local

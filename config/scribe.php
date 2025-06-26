@@ -14,10 +14,9 @@ return [
             'match' => [
                 'domains' => ['*'],
                 'prefixes' => ['api/*'],
-                'versions' => ['v1'],
             ],
             'include' => [
-                // Include all API routes
+                'api/*',
             ],
             'exclude' => [
                 // Exclude sensitive routes if needed
@@ -42,7 +41,7 @@ return [
     ],
 
     'auth' => [
-        'enabled' => false,
+        'enabled' => true,
         'default' => false,
         'in' => 'bearer',
         'name' => 'Authorization',
@@ -52,11 +51,9 @@ return [
     ],
 
     'intro_text' => <<<INTRO
-This documentation aims to provide all the information you need to work with our API.
-
-<aside>Base URL: <code>{base_url}</code></aside>
-INTRO
-    ,
+        This documentation aims to provide all the information you need to work with our API.
+        <aside>Base URL: <code>{base_url}</code></aside>
+    INTRO,
 
     'example_languages' => [
         'bash',
@@ -81,10 +78,87 @@ INTRO
 
     'groups' => [
         'default' => 'Endpoints',
+        'Authentication' => 'User authentication and account management',
+        'Games' => 'Tabletop RPG games management',
+        'Character Sheets' => 'Character sheets management',
+        'Races' => 'Game races management',
+        'Classes' => 'Game classes management',
+        'Books' => 'Game books and documents management',
+        'Profile' => 'User profile management',
+        'File Upload' => 'File upload operations',
+        'Admin' => 'Administrative operations',
+        'Health' => 'System health checks',
     ],
 
     'logo' => false,
 
     'last_updated' => 'Last updated: {date}',
 
+    'strategies' => [
+        'metadata' => [
+            \Knuckles\Scribe\Extracting\Strategies\Metadata\GetFromDocBlocks::class,
+            \Knuckles\Scribe\Extracting\Strategies\Metadata\GetFromMetadataAttributes::class,
+        ],
+        'urlParameters' => [
+            \Knuckles\Scribe\Extracting\Strategies\UrlParameters\GetFromLaravelAPI::class,
+            \Knuckles\Scribe\Extracting\Strategies\UrlParameters\GetFromUrlParamAttribute::class,
+            \Knuckles\Scribe\Extracting\Strategies\UrlParameters\GetFromUrlParamTag::class,
+        ],
+        'queryParameters' => [
+            \Knuckles\Scribe\Extracting\Strategies\QueryParameters\GetFromFormRequest::class,
+            \Knuckles\Scribe\Extracting\Strategies\QueryParameters\GetFromInlineValidator::class,
+            \Knuckles\Scribe\Extracting\Strategies\QueryParameters\GetFromQueryParamAttribute::class,
+            \Knuckles\Scribe\Extracting\Strategies\QueryParameters\GetFromQueryParamTag::class,
+        ],
+        'headers' => [
+            \Knuckles\Scribe\Extracting\Strategies\Headers\GetFromHeaderAttribute::class,
+            \Knuckles\Scribe\Extracting\Strategies\Headers\GetFromHeaderTag::class,
+            [
+                \Knuckles\Scribe\Extracting\Strategies\StaticData::class,
+                [
+                    'only' => [],
+                    'except' => [],
+                    'data' => [
+                        'Content-Type' => 'application/json',
+                        'Accept' => 'application/json',
+                    ],
+                ],
+            ],
+        ],
+        'bodyParameters' => [
+            \Knuckles\Scribe\Extracting\Strategies\BodyParameters\GetFromFormRequest::class,
+            \Knuckles\Scribe\Extracting\Strategies\BodyParameters\GetFromInlineValidator::class,
+            \Knuckles\Scribe\Extracting\Strategies\BodyParameters\GetFromBodyParamAttribute::class,
+            \Knuckles\Scribe\Extracting\Strategies\BodyParameters\GetFromBodyParamTag::class,
+        ],
+        'responses' => [
+            \Knuckles\Scribe\Extracting\Strategies\Responses\UseResponseAttributes::class,
+            \Knuckles\Scribe\Extracting\Strategies\Responses\UseTransformerTags::class,
+            \Knuckles\Scribe\Extracting\Strategies\Responses\UseApiResourceTags::class,
+            \Knuckles\Scribe\Extracting\Strategies\Responses\UseResponseTag::class,
+            \Knuckles\Scribe\Extracting\Strategies\Responses\UseResponseFileTag::class,
+            [
+                \Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls::class,
+                [
+                    'only' => ['GET *'],
+                    'except' => [
+                        'api/users',           // ← EXCLUIR ROTAS ADMIN
+                        'api/users/*',
+                        '*/suspend',
+                    ],
+                    'config' => [
+                        'app.debug' => false,
+                    ],
+                    'queryParams' => [],
+                    'bodyParams' => [],
+                    'fileParams' => [],
+                    'cookies' => [],
+                ],
+            ],
+        ],
+        'responseFields' => [
+            \Knuckles\Scribe\Extracting\Strategies\ResponseFields\GetFromResponseFieldAttribute::class,
+            \Knuckles\Scribe\Extracting\Strategies\ResponseFields\GetFromResponseFieldTag::class,
+        ],
+    ],
 ];

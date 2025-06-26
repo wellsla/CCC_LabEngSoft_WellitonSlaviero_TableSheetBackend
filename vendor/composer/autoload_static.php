@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit5b9455eaa0f68a876573bcadeb41d214
+class ComposerStaticInitca9aacc112eeb67e865a2f0d85848ca2
 {
     public static $files = array (
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
@@ -575,12 +575,15 @@ class ComposerStaticInit5b9455eaa0f68a876573bcadeb41d214
     public static $classMap = array (
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/AuthController.php',
+        'App\\Http\\Controllers\\BookController' => __DIR__ . '/../..' . '/app/Http/Controllers/BookController.php',
         'App\\Http\\Controllers\\CharacterSheetController' => __DIR__ . '/../..' . '/app/Http/Controllers/CharacterSheetController.php',
+        'App\\Http\\Controllers\\ClassController' => __DIR__ . '/../..' . '/app/Http/Controllers/ClassController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\FileUploadController' => __DIR__ . '/../..' . '/app/Http/Controllers/FileUploadController.php',
         'App\\Http\\Controllers\\GameController' => __DIR__ . '/../..' . '/app/Http/Controllers/GameController.php',
         'App\\Http\\Controllers\\HealthController' => __DIR__ . '/../..' . '/app/Http/Controllers/HealthController.php',
         'App\\Http\\Controllers\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfileController.php',
+        'App\\Http\\Controllers\\RaceController' => __DIR__ . '/../..' . '/app/Http/Controllers/RaceController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\AdminMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/AdminMiddleware.php',
@@ -591,6 +594,7 @@ class ComposerStaticInit5b9455eaa0f68a876573bcadeb41d214
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Http\\Requests\\CharacterSheetRequest' => __DIR__ . '/../..' . '/app/Http/Requests/CharacterSheetRequest.php',
         'App\\Http\\Traits\\ApiResponseTrait' => __DIR__ . '/../..' . '/app/Http/Traits/ApiResponseTrait.php',
         'App\\Models\\Book' => __DIR__ . '/../..' . '/app/Models/Book.php',
         'App\\Models\\CharacterSheet' => __DIR__ . '/../..' . '/app/Models/CharacterSheet.php',
@@ -598,6 +602,8 @@ class ComposerStaticInit5b9455eaa0f68a876573bcadeb41d214
         'App\\Models\\GameClass' => __DIR__ . '/../..' . '/app/Models/GameClass.php',
         'App\\Models\\Race' => __DIR__ . '/../..' . '/app/Models/Race.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
+        'App\\Notifications\\ResetPasswordNotification' => __DIR__ . '/../..' . '/app/Notifications/ResetPasswordNotification.php',
+        'App\\Notifications\\VerifyEmailNotification' => __DIR__ . '/../..' . '/app/Notifications/VerifyEmailNotification.php',
         'App\\Policies\\CharacterSheetPolicy' => __DIR__ . '/../..' . '/app/Policies/CharacterSheetPolicy.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -6899,6 +6905,7 @@ class ComposerStaticInit5b9455eaa0f68a876573bcadeb41d214
         'Termwind\\ValueObjects\\Node' => __DIR__ . '/..' . '/nunomaduro/termwind/src/ValueObjects/Node.php',
         'Termwind\\ValueObjects\\Style' => __DIR__ . '/..' . '/nunomaduro/termwind/src/ValueObjects/Style.php',
         'Termwind\\ValueObjects\\Styles' => __DIR__ . '/..' . '/nunomaduro/termwind/src/ValueObjects/Styles.php',
+        'Tests\\HandlerTest' => __DIR__ . '/../..' . '/tests/HandlerTest.php',
         'TheSeer\\Tokenizer\\Exception' => __DIR__ . '/..' . '/theseer/tokenizer/src/Exception.php',
         'TheSeer\\Tokenizer\\NamespaceUri' => __DIR__ . '/..' . '/theseer/tokenizer/src/NamespaceUri.php',
         'TheSeer\\Tokenizer\\NamespaceUriException' => __DIR__ . '/..' . '/theseer/tokenizer/src/NamespaceUriException.php',
@@ -6947,10 +6954,10 @@ class ComposerStaticInit5b9455eaa0f68a876573bcadeb41d214
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit5b9455eaa0f68a876573bcadeb41d214::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit5b9455eaa0f68a876573bcadeb41d214::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit5b9455eaa0f68a876573bcadeb41d214::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit5b9455eaa0f68a876573bcadeb41d214::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitca9aacc112eeb67e865a2f0d85848ca2::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitca9aacc112eeb67e865a2f0d85848ca2::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitca9aacc112eeb67e865a2f0d85848ca2::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitca9aacc112eeb67e865a2f0d85848ca2::$classMap;
 
         }, null, ClassLoader::class);
     }

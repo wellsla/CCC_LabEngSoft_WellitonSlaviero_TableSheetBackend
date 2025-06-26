@@ -20,7 +20,6 @@ class Book extends Model
         'name',
         'description',
         'document_url',
-        'created_by',
     ];
 
     /**

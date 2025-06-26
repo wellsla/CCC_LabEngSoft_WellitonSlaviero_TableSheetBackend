@@ -4,10 +4,30 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+/**
+ * @group Health
+ *
+ * System health check endpoints
+ */
 class HealthController extends Controller
 {
     /**
-     * Get application health status.
+     * Health check
+     *
+     * Get the application health status and system information.
+     *
+     * @response 200 {
+     *   "data": {
+     *     "app_name": "TableSheet Backend",
+     *     "version": "1.0.0",
+     *     "uptime": 123.45,
+     *     "status": "healthy",
+     *     "timestamp": "2024-01-01T12:00:00.000000Z",
+     *     "environment": "production",
+     *     "debug": false
+     *   },
+     *   "message": "Application is healthy"
+     * }
      */
     public function health()
     {

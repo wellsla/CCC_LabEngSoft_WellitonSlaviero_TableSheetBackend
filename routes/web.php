@@ -1,11 +1,11 @@
-use Illuminate\Support\Facades\Route;
+<?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-| Aqui ficam suas rotas web. Se não for usar nenhuma, deixe só o fallback
-*/
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+
+// Password reset route
+Route::get('/password/reset/{token}', [AuthController::class, 'showResetForm'])
+    ->name('password.reset');
 
 Route::fallback(function () {
     abort(404);
