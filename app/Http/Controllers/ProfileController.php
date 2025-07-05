@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateProfileRequest;
 use App\Http\Requests\ChangePasswordRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Traits\TransformsFileUrls;
 
 /**
  * @group Profile
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\Hash;
  */
 class ProfileController extends Controller
 {
+    use TransformsFileUrls;
     /**
      * Get user profile
      *
@@ -89,6 +91,9 @@ class ProfileController extends Controller
         $originalEmail = $user->email;
 
         $data = $request->only(['username', 'name', 'email', 'birth_date', 'avatar_url']);
+
+        // Transform avatar_url if present
+        $data = $this->transformUrlFieldInData($data, 'avatar_url');
 
         // If email is being changed, reset email verification
         if (isset($data['email']) && $data['email'] !== $originalEmail) {

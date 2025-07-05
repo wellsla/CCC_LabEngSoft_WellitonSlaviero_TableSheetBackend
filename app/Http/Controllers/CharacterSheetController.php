@@ -6,6 +6,7 @@ use App\Models\CharacterSheet;
 use App\Http\Requests\CharacterSheetRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use App\Traits\TransformsFileUrls;
 
 /**
  * @group Character Sheets
@@ -14,6 +15,7 @@ use Illuminate\Http\Request;
  */
 class CharacterSheetController extends Controller
 {
+    use TransformsFileUrls;
     /**
      * List character sheets
      *
@@ -187,6 +189,11 @@ class CharacterSheetController extends Controller
     public function store(CharacterSheetRequest $request)
     {
 
+        $portraitUrl = $request->portrait_url;
+        if ($portraitUrl) {
+            $portraitUrl = $this->transformUrlForDatabase($portraitUrl);
+        }
+
         $sheet = CharacterSheet::create([
             'user_id' => auth()->id(),
             'game_id' => $request->game_id,
@@ -207,7 +214,7 @@ class CharacterSheetController extends Controller
             'speed' => $request->speed,
             'description' => $request->description,
             'notes' => $request->notes,
-            'portrait_url' => $request->portrait_url,
+            'portrait_url' => $portraitUrl,
         ]);
 
         return $this->createdResponse(
@@ -357,12 +364,17 @@ class CharacterSheetController extends Controller
 
         $this->authorize('update', $sheet);
 
-        $sheet->update($request->only([
+        $data = $request->only([
             'game_id', 'race_id', 'class_id', 'name', 'level',
             'strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma',
             'current_hit_points', 'max_hit_points', 'armor_class', 'initiative', 'speed',
             'description', 'notes', 'portrait_url', 'is_active'
-        ]));
+        ]);
+
+        // Transform portrait_url if present
+        $data = $this->transformUrlFieldInData($data, 'portrait_url');
+
+        $sheet->update($data);
 
         return $this->updatedResponse(
             $sheet->fresh()->load(['game', 'race', 'class']),

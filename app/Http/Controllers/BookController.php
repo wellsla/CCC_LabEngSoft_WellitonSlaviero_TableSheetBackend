@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Http\Requests\BookRequest;
 use Illuminate\Http\Request;
+use App\Traits\TransformsFileUrls;
 
 /**
  * @group Books
@@ -13,6 +14,7 @@ use Illuminate\Http\Request;
  */
 class BookController extends Controller
 {
+    use TransformsFileUrls;
     public function index(Request $request)
     {
         $perPage = $request->get('per_page', 15);
@@ -62,11 +64,16 @@ class BookController extends Controller
     public function store(BookRequest $request)
     {
 
+        $documentUrl = $request->document_url;
+        if ($documentUrl) {
+            $documentUrl = $this->transformUrlForDatabase($documentUrl);
+        }
+
         $book = Book::create([
             'game_id' => $request->game_id,
             'name' => $request->name,
             'description' => $request->description,
-            'document_url' => $request->document_url,
+            'document_url' => $documentUrl,
             'created_by' => auth()->id(),
         ]);
 
@@ -81,9 +88,14 @@ class BookController extends Controller
             return $this->notFoundResponse('Livro não encontrado. O ID informado não existe ou foi removido.');
         }
 
-        $book->update($request->only([
+        $data = $request->only([
             'game_id', 'name', 'description', 'document_url'
-        ]));
+        ]);
+
+        // Transform document_url if present
+        $data = $this->transformUrlFieldInData($data, 'document_url');
+
+        $book->update($data);
 
         return $this->updatedResponse($book->fresh()->load('game'), 'Livro atualizado com sucesso');
     }

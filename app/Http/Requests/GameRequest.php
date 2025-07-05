@@ -22,7 +22,8 @@ class GameRequest extends FormRequest
     public function rules(): array
     {
         $isUpdate = $this->isMethod('PUT') || $this->isMethod('PATCH');
-        $gameId = $this->route('game') ? $this->route('game')->id : null;
+        $gameParam = $this->route('game');
+        $gameId = $gameParam ? (is_object($gameParam) ? $gameParam->id : $gameParam) : null;
 
         return [
             'name' => ($isUpdate ? 'sometimes|' : 'required|') . 'string|max:255|unique:games,name' . ($gameId ? ',' . $gameId : ''),

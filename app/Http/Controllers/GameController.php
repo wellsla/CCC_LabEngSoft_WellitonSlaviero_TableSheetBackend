@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Game;
 use App\Http\Requests\GameRequest;
 use Illuminate\Http\Request;
+use App\Traits\TransformsFileUrls;
 
 /**
  * @group Games
@@ -13,6 +14,7 @@ use Illuminate\Http\Request;
  */
 class GameController extends Controller
 {
+    use TransformsFileUrls;
     /**
      * List games
      *
@@ -186,11 +188,16 @@ class GameController extends Controller
     public function store(GameRequest $request)
     {
 
+        $coverImageUrl = $request->cover_image_url;
+        if ($coverImageUrl) {
+            $coverImageUrl = $this->transformUrlForDatabase($coverImageUrl);
+        }
+
         $game = Game::create([
             'name' => $request->name,
             'description' => $request->description,
             'version' => $request->version,
-            'cover_image_url' => $request->cover_image_url,
+            'cover_image_url' => $coverImageUrl,
             'created_by' => auth()->id(),
         ]);
 
@@ -238,9 +245,14 @@ class GameController extends Controller
             return $this->notFoundResponse('Jogo não encontrado. O ID informado não existe ou foi removido.');
         }
 
-        $game->update($request->only([
+        $data = $request->only([
             'name', 'description', 'version', 'cover_image_url', 'is_active'
-        ]));
+        ]);
+
+        // Transform cover_image_url if present
+        $data = $this->transformUrlFieldInData($data, 'cover_image_url');
+
+        $game->update($data);
 
         return $this->updatedResponse($game->fresh(), 'Jogo atualizado com sucesso');
     }

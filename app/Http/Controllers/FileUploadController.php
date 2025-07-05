@@ -9,9 +9,12 @@ use App\Models\User;
 use App\Models\Game;
 use App\Models\CharacterSheet;
 use App\Models\Book;
+use App\Traits\TransformsFileUrls;
 
 class FileUploadController extends Controller
 {
+    use TransformsFileUrls;
+
     /**
      * Validate file content by checking file signature (magic numbers)
      */
@@ -136,7 +139,7 @@ class FileUploadController extends Controller
         $url = Storage::disk($config['disk'])->url($path);
 
         // Update user avatar_url
-        $user->update(['avatar_url' => $url]);
+        $user->update(['avatar_url' => $this->transformUrlForDatabase($url)]);
 
         return response()->json([
             'message' => 'Avatar enviado com sucesso',
@@ -204,7 +207,7 @@ class FileUploadController extends Controller
         $url = Storage::disk($config['disk'])->url($path);
 
         // Update character sheet portrait_url
-        $characterSheet->update(['portrait_url' => $url]);
+        $characterSheet->update(['portrait_url' => $this->transformUrlForDatabase($url)]);
 
         return response()->json([
             'message' => 'Retrato enviado com sucesso',
@@ -267,7 +270,7 @@ class FileUploadController extends Controller
         $url = Storage::disk($config['disk'])->url($path);
 
         // Update game cover_image_url
-        $game->update(['cover_image_url' => $url]);
+        $game->update(['cover_image_url' => $this->transformUrlForDatabase($url)]);
 
         return response()->json([
             'message' => 'Imagem de capa enviada com sucesso',
@@ -330,7 +333,7 @@ class FileUploadController extends Controller
         $url = Storage::disk($config['disk'])->url($path);
 
         // Update book document_url
-        $book->update(['document_url' => $url]);
+        $book->update(['document_url' => $this->transformUrlForDatabase($url)]);
 
         return response()->json([
             'message' => 'Documento enviado com sucesso',
